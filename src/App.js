@@ -5,6 +5,9 @@ import reducer from './context/reducer';
 import STATE from '../src/context/initState';
 import { UserProvider } from './context/userContext';
 import {BrowserRouter, Routes,Route} from 'react-router-dom';
+import AdminDashboard from "./Page/dashboard";
+import AdminLogin from "./Page/auth/login";
+import LayoutAdmin from "./Component/AdminLayout";
 
 
 const URL_ADMIN="admin-adios";
