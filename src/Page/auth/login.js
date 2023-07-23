@@ -1,9 +1,28 @@
 
-
+import React,{useEffect,useState,useContext} from "react";
+import {login} from "../../Service/auth.service";
+import UserContext from "../../context/userContext";
 const AdminLogin =()=>{
+    const {state,dispatch}=useContext(UserContext)
+    const [user,setUser]=useState({Username:"",Password:""});
+
+    const handleInput=(event)=>{
+        user[event.target.name]=event.target.value;
+        setUser(user);
+    }
+    
+    const submit =async (formdata)=>{
+        // call api
+        const user= await login(formdata);
+        state.token=user.token;
+        // nếu bạn thiết lập tiêu đề "common" một lần, tiêu đề đó sẽ tự động được gửi cùng với mọi yêu cầu bạn thực hiện bằng Axios sau đó.
+        api.defaults.headers.common["Authorization"] = `Bearer ${u.token}`;
+
+    }
+
 
     return (
-        <form class="form" method="" action="#">
+        <form class="form" method="post" onSubmit={submit}>
         <div class="card card-login card-hidden">
         <div class="card-header card-header-rose text-center">
             <h4 class="card-title">Login</h4>
@@ -25,20 +44,10 @@ const AdminLogin =()=>{
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text">
-                    <i class="material-icons">face</i>
-                </span>
-                </div>
-                <input type="text" class="form-control" placeholder="First Name..."/>
-            </div>
-            </span>
-            <span class="bmd-form-group">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                <span class="input-group-text">
                     <i class="material-icons">email</i>
                 </span>
                 </div>
-                <input type="email" class="form-control" placeholder="Email..."/>
+                <input type="email" name="Username" onChange={handleInput} class="form-control" placeholder="Email..."/>
             </div>
             </span>
             <span class="bmd-form-group">
@@ -48,12 +57,12 @@ const AdminLogin =()=>{
                     <i class="material-icons">lock_outline</i>
                 </span>
                 </div>
-                <input type="password" class="form-control" placeholder="Password..."/>
+                <input type="password" name="Password" onChange={handleInput} class="form-control" placeholder="Password..."/>
             </div>
             </span>
         </div>
         <div class="card-footer justify-content-center">
-            <a href="#pablo" class="btn btn-rose btn-link btn-lg">Lets Go</a>
+            <button type="button" class="btn btn-rose btn-link btn-lg">Lets Go</button>
         </div>
         </div>
     </form>
