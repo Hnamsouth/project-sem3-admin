@@ -17,7 +17,7 @@ function App() {
           <Route  path={URL_ADMIN}  element={iAdmin(<AdminDashboard/>,false)}/>
           <Route  path={URL_ADMIN+"/dashboard"} element={iAdmin(null,false)}/>
           <Route  path={URL_ADMIN+"/login"}  element={iAdmin(<AdminLogin/>,true)}/>
-          <Route  path='*' Component={<div>Page Not FOUND</div>}/>
+          <Route  path='*' Component={<div>Page Not FOUND - south</div>}/>
         </Routes>
       </BrowserRouter>
     </UserProvider>
