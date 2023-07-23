@@ -10,7 +10,7 @@ import AdminLogin from "./Page/auth/login";
 import LayoutAdmin from "./Component/AdminLayout";
 
 
-const URL_ADMIN="admin-adios";
+const URL_ADMIN="/admin-adios";
 function App() {
   const [state,dispatch]=useReducer(reducer,STATE);
   return (
@@ -20,7 +20,7 @@ function App() {
           <Route  path={URL_ADMIN}  element={iAdmin(<AdminDashboard/>,false)}/>
           <Route  path={URL_ADMIN+"/dashboard"} element={iAdmin(null,false)}/>
           <Route  path={URL_ADMIN+"/login"}  element={iAdmin(<AdminLogin/>,true)}/>
-          <Route  path='*' Component={<div>Page Not FOUND - south</div>}/>
+          <Route  path='*' element={<div>Page Not FOUND - south</div>}/>
         </Routes>
       </BrowserRouter>
     </UserProvider>

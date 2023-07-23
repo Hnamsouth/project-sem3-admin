@@ -2,7 +2,7 @@
 const AdminDashboard =()=>{
 
     return (
-<div class="content">
+                <div class="content">
                             <div class="container-fluid">
                             <div class="row">
                             <div class="col-md-12">
@@ -383,7 +383,6 @@ const AdminDashboard =()=>{
                                         </div>
                             </div>
                         </div>
-
     );
 }
 

@@ -1,9 +1,8 @@
 
-import Sidebar from "../Admin/sidebar";
+import Sidebar from "./sidebar";
 import React,{useEffect} from "react";
 import Plugin from "./plugin";
 import Main from "./main";
-import AdminLinkCss from "./script-css/LinkCss";
 import Footer from "./footer";
 import AdminNav from "./nav";
 import NavLoginAdmin from "./auth/NavLogin";
@@ -18,25 +17,20 @@ const LayoutAdmin=(props)=>{
     
 
     return ( 
-        <html lang="en">
-        <AdminLinkCss/>
-        <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+        <div>
         {!props.auth? (
-            <body>
-            <div class="wrapper ">
-                <Sidebar/>
-                <div class="main-panel">
-                    <AdminNav/>
-                    <div class="content">
-                        {props.main}
+                <div class="wrapper ">
+                    <Sidebar/>
+                    <div class="main-panel">
+                        <AdminNav/>
+                        <div class="content">
+                            {props.main}
+                        </div>
+                        <Footer/>
                     </div>
-                    <Footer/>
                 </div>
-            </div>
-            <Plugin/>
-            </body>
         ):(
-            <body  class="off-canvas-sidebar">
+            <div  class="off-canvas-sidebar">
                 <NavLoginAdmin/>
                 <div class="wrapper wrapper-full-page">
                     <div class="page-header login-page header-filter" filter-color="black" style={style}>
@@ -50,10 +44,10 @@ const LayoutAdmin=(props)=>{
                         <FooterLoginAdmin/>
                     </div>
                 </div>
-                
-            </body>
+            </div>
         )}
-        </html>
+        </div>
+
     );
 }
 export default LayoutAdmin;

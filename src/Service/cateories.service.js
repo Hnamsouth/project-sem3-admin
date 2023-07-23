@@ -13,6 +13,10 @@ export const get = async (id=null)=>{
 }
 
 export const create = async (data)=>{
-    return [];
+    try {
+        const url=URL+"create";
+    } catch (error) {
+        
+    }
 
 }
