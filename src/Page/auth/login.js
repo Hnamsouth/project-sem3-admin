@@ -2,6 +2,7 @@
 import React,{useEffect,useState,useContext} from "react";
 import {login} from "../../Service/auth.service";
 import UserContext from "../../context/userContext";
+import api from "../../Service/api";
 const AdminLogin =()=>{
     const {state,dispatch}=useContext(UserContext)
     const [user,setUser]=useState({Username:"",Password:""});
@@ -16,7 +17,7 @@ const AdminLogin =()=>{
         const user= await login(formdata);
         state.token=user.token;
         // nếu bạn thiết lập tiêu đề "common" một lần, tiêu đề đó sẽ tự động được gửi cùng với mọi yêu cầu bạn thực hiện bằng Axios sau đó.
-        api.defaults.headers.common["Authorization"] = `Bearer ${u.token}`;
+        api.defaults.headers.common["Authorization"] = `Bearer ${user.token}`;
 
     }
 
