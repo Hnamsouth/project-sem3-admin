@@ -53,7 +53,7 @@ const AdminLogin =()=>{
                         <i class="material-icons">email</i>
                     </span>
                     </div>
-                    <input type="text" name="Username" onChange={handleInput} class="form-control" placeholder="Username..."/>
+                    <input type="text" name="Username" minLength={3} onChange={handleInput} class="form-control" placeholder="Username..."/>
                 </div>
                 </span>
                 <span class="bmd-form-group">
