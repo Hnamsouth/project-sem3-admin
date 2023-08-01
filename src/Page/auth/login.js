@@ -4,9 +4,11 @@ import {login} from "../../Service/auth.service";
 import UserContext from "../../context/userContext";
 import api from "../../Service/api";
 import { Link } from "react-router-dom";
+import { useNavigate  } from 'react-router-dom';
 const AdminLogin =()=>{
     const {state,dispatch}=useContext(UserContext)
     const [user,setUser]=useState({Username:"",Password:""});
+    let navigate = useNavigate();
 
     const handleInput=(event)=>{
         user[event.target.name]=event.target.value;
@@ -16,10 +18,11 @@ const AdminLogin =()=>{
     const submit = async (event)=>{
         event.preventDefault();
         const rs= await login(user);
-        state.token=user.token;
+        if(!rs.token) return alert("Tài khoản hoặc mật khẩu không đúng");
+        state.token=rs.token;
         // nếu bạn thiết lập tiêu đề "common" một lần, tiêu đề đó sẽ tự động được gửi cùng với mọi yêu cầu bạn thực hiện bằng Axios sau đó.
         api.defaults.headers.common["Authorization"] = `Bearer ${user.token}`;
-
+        navigate("/")
     }
 
 

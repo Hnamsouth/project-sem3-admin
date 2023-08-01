@@ -6,7 +6,6 @@ export const login =async (data)=>{
         const rs = await api.post(url,data);
         return rs.data;
     } catch (error) {
-        alert("Tài khoản hoặc mật khẩu không đúng");
         return {};
     }
 }
