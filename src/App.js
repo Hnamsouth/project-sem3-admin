@@ -15,7 +15,7 @@ function App() {
     <UserProvider value={{state,dispatch}}>
       <BrowserRouter>
         <Routes>
-          <Route  path="/" exact id='1'  element={iAdmin(<AdminDashboard/>,false)}/>
+          <Route  path="/" exact id='asd'  element={iAdmin(<AdminDashboard/>,false)}/>
           <Route  path="/dashboard" element={iAdmin(null,false)}/>
           <Route  path="/login"  element={iAdmin(<AdminLogin/>,true)}/>
           <Route  path='*' element={<div>Page Not FOUND - south</div>}/>
