@@ -1,10 +1,7 @@
-
 import axios from "axios";
-const BASE_URL = "https://localhost:7133/api/";
-const api = ()=>{
-    return axios.create({
-        baseURL:BASE_URL,
-        //headers: {"Authorization":"Bearer ..."}
-    })
-}
+const url="https://localhost:7133/api/";
+const api = axios.create({
+    baseURL:url
+    // header:{"Authorization":"base urv"}
+});
 export default api;

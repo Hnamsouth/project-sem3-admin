@@ -22,7 +22,7 @@ function App() {
 
       <BrowserRouter>
         <Routes>
-          <Route  path="/" exact id='1'  element={iAdmin(<AdminDashboard/>,false)}/>
+          <Route  path="/" exact id='asd'  element={iAdmin(<AdminDashboard/>,false)}/>
           <Route  path="/dashboard" element={iAdmin(null,false)}/>
           <Route  path="/list-product" element={iAdmin(<ListProduct/>,false)}/>
           <Route  path="/create-product"  element={iAdmin(<CreateProduct/>,false)}/>
