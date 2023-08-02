@@ -10,7 +10,6 @@ import LayoutAdmin from "./Component/AdminLayout";
 import ListProduct from "./Page/product/list-product";
 import CreateProduct from "./Page/product/create-product";
 import ListCategory from "./Page/category/list-category";
-import CreateCategory from "./Page/category/create-category";
 import Loading from "./Component/loading";
 
 
@@ -26,7 +25,6 @@ function App() {
           <Route  path="/dashboard" element={iAdmin(null,false)}/>
           <Route  path="/list-product" element={iAdmin(<ListProduct/>,false)}/>
           <Route  path="/create-product"  element={iAdmin(<CreateProduct/>,false)}/>
-          <Route  path="/create-category"  element={iAdmin(<CreateCategory/>,false)}/>
           <Route  path="/list-category"  element={iAdmin(<ListCategory/>,false)}/>
           <Route  path="/login"  element={iAdmin(<AdminLogin/>,true)}/>
           <Route  path='*' element={<div>Page Not FOUND - south</div>}/>

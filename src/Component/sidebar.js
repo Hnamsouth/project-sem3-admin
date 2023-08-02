@@ -96,12 +96,6 @@ const Sidebar = () => {
                     <div className="collapse" id="formsExamples">
                         <ul className="nav">
                             <li className="nav-item ">
-                                <Link className="nav-link" to={'/create-category'}>
-                                    <span className="sidebar-mini"> C </span>
-                                    <span className="sidebar-normal"> Create Category </span>
-                                </Link>
-                            </li>
-                            <li className="nav-item ">
                                 <Link className="nav-link" to={'/list-category'}>
                                     <span className="sidebar-mini"> L </span>
                                     <span className="sidebar-normal"> List Category </span>

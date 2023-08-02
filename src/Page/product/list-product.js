@@ -1,11 +1,18 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import {Helmet, HelmetProvider} from 'react-helmet';
+
 
 function ListProduct(props) {
+
     return (
 
 
         <div className="content">
+            <Helmet>
+                <script src="../admin/assets/js/plugins/jquery.dataTables.min.js" type = "text/javascript" ></script>
+                <script src = "../admin/assets/demo/datatable.js" type = "text/javascript" />
+            </Helmet>
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-12">
@@ -14,14 +21,16 @@ function ListProduct(props) {
                                 <div className="card-icon">
                                     <i className="material-icons">assignment</i>
                                 </div>
-                                <button className="btn btn-outline-primary"><Link to={'/create-product'} >Add product</Link></button>
+                                <button className="btn btn-outline-primary"><Link to={'/create-product'}>Add
+                                    product</Link></button>
                             </div>
                             <div className="card-body">
                                 <div className="toolbar">
                                     {/*        Here you can write extra buttons/actions for the toolbar              */}
                                 </div>
                                 <div className="material-datatables">
-                                    <table id="datatables" className="table table-striped table-no-bordered table-hover" cellSpacing={0} width="100%" style={{width: '100%'}}>
+                                    <table id="datatables" className="table table-striped table-no-bordered table-hover"
+                                           cellSpacing={0} width="100%" style={{width: '100%'}}>
                                         <thead>
                                         <tr>
                                             <th>Name</th>
@@ -50,9 +59,12 @@ function ListProduct(props) {
                                             <td>61</td>
                                             <td>2011/04/25</td>
                                             <td className="text-right">
-                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i className="material-icons">favorite</i></a>
-                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i className="material-icons">dvr</i></a>
-                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i className="material-icons">close</i></a>
+                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i
+                                                    className="material-icons">favorite</i></a>
+                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i
+                                                    className="material-icons">dvr</i></a>
+                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i
+                                                    className="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -62,9 +74,12 @@ function ListProduct(props) {
                                             <td>63</td>
                                             <td>2011/07/25</td>
                                             <td className="text-right">
-                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i className="material-icons">favorite</i></a>
-                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i className="material-icons">dvr</i></a>
-                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i className="material-icons">close</i></a>
+                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i
+                                                    className="material-icons">favorite</i></a>
+                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i
+                                                    className="material-icons">dvr</i></a>
+                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i
+                                                    className="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -74,9 +89,12 @@ function ListProduct(props) {
                                             <td>66</td>
                                             <td>2009/01/12</td>
                                             <td className="text-right">
-                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i className="material-icons">favorite</i></a>
-                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i className="material-icons">dvr</i></a>
-                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i className="material-icons">close</i></a>
+                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i
+                                                    className="material-icons">favorite</i></a>
+                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i
+                                                    className="material-icons">dvr</i></a>
+                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i
+                                                    className="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -86,9 +104,12 @@ function ListProduct(props) {
                                             <td>22</td>
                                             <td>2012/03/29</td>
                                             <td className="text-right">
-                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i className="material-icons">favorite</i></a>
-                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i className="material-icons">dvr</i></a>
-                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i className="material-icons">close</i></a>
+                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i
+                                                    className="material-icons">favorite</i></a>
+                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i
+                                                    className="material-icons">dvr</i></a>
+                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i
+                                                    className="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -98,9 +119,12 @@ function ListProduct(props) {
                                             <td>33</td>
                                             <td>2008/11/28</td>
                                             <td className="text-right">
-                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i className="material-icons">favorite</i></a>
-                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i className="material-icons">dvr</i></a>
-                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i className="material-icons">close</i></a>
+                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i
+                                                    className="material-icons">favorite</i></a>
+                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i
+                                                    className="material-icons">dvr</i></a>
+                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i
+                                                    className="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -110,9 +134,12 @@ function ListProduct(props) {
                                             <td>61</td>
                                             <td>2012/12/02</td>
                                             <td className="text-right">
-                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i className="material-icons">favorite</i></a>
-                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i className="material-icons">dvr</i></a>
-                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i className="material-icons">close</i></a>
+                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i
+                                                    className="material-icons">favorite</i></a>
+                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i
+                                                    className="material-icons">dvr</i></a>
+                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i
+                                                    className="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -122,9 +149,12 @@ function ListProduct(props) {
                                             <td>59</td>
                                             <td>2012/08/06</td>
                                             <td className="text-right">
-                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i className="material-icons">favorite</i></a>
-                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i className="material-icons">dvr</i></a>
-                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i className="material-icons">close</i></a>
+                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i
+                                                    className="material-icons">favorite</i></a>
+                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i
+                                                    className="material-icons">dvr</i></a>
+                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i
+                                                    className="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -134,9 +164,12 @@ function ListProduct(props) {
                                             <td>55</td>
                                             <td>2010/10/14</td>
                                             <td className="text-right">
-                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i className="material-icons">favorite</i></a>
-                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i className="material-icons">dvr</i></a>
-                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i className="material-icons">close</i></a>
+                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i
+                                                    className="material-icons">favorite</i></a>
+                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i
+                                                    className="material-icons">dvr</i></a>
+                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i
+                                                    className="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -146,9 +179,12 @@ function ListProduct(props) {
                                             <td>39</td>
                                             <td>2009/09/15</td>
                                             <td className="text-right">
-                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i className="material-icons">favorite</i></a>
-                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i className="material-icons">dvr</i></a>
-                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i className="material-icons">close</i></a>
+                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i
+                                                    className="material-icons">favorite</i></a>
+                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i
+                                                    className="material-icons">dvr</i></a>
+                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i
+                                                    className="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -158,9 +194,12 @@ function ListProduct(props) {
                                             <td>23</td>
                                             <td>2008/12/13</td>
                                             <td className="text-right">
-                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i className="material-icons">favorite</i></a>
-                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i className="material-icons">dvr</i></a>
-                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i className="material-icons">close</i></a>
+                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i
+                                                    className="material-icons">favorite</i></a>
+                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i
+                                                    className="material-icons">dvr</i></a>
+                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i
+                                                    className="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -170,9 +209,12 @@ function ListProduct(props) {
                                             <td>30</td>
                                             <td>2008/12/19</td>
                                             <td className="text-right">
-                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i className="material-icons">favorite</i></a>
-                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i className="material-icons">dvr</i></a>
-                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i className="material-icons">close</i></a>
+                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i
+                                                    className="material-icons">favorite</i></a>
+                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i
+                                                    className="material-icons">dvr</i></a>
+                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i
+                                                    className="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -182,9 +224,12 @@ function ListProduct(props) {
                                             <td>22</td>
                                             <td>2013/03/03</td>
                                             <td className="text-right">
-                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i className="material-icons">favorite</i></a>
-                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i className="material-icons">dvr</i></a>
-                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i className="material-icons">close</i></a>
+                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i
+                                                    className="material-icons">favorite</i></a>
+                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i
+                                                    className="material-icons">dvr</i></a>
+                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i
+                                                    className="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -194,9 +239,12 @@ function ListProduct(props) {
                                             <td>36</td>
                                             <td>2008/10/16</td>
                                             <td className="text-right">
-                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i className="material-icons">favorite</i></a>
-                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i className="material-icons">dvr</i></a>
-                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i className="material-icons">close</i></a>
+                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i
+                                                    className="material-icons">favorite</i></a>
+                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i
+                                                    className="material-icons">dvr</i></a>
+                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i
+                                                    className="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -206,9 +254,12 @@ function ListProduct(props) {
                                             <td>43</td>
                                             <td>2012/12/18</td>
                                             <td className="text-right">
-                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i className="material-icons">favorite</i></a>
-                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i className="material-icons">dvr</i></a>
-                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i className="material-icons">close</i></a>
+                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i
+                                                    className="material-icons">favorite</i></a>
+                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i
+                                                    className="material-icons">dvr</i></a>
+                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i
+                                                    className="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -218,9 +269,12 @@ function ListProduct(props) {
                                             <td>19</td>
                                             <td>2010/03/17</td>
                                             <td className="text-right">
-                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i className="material-icons">favorite</i></a>
-                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i className="material-icons">dvr</i></a>
-                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i className="material-icons">close</i></a>
+                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i
+                                                    className="material-icons">favorite</i></a>
+                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i
+                                                    className="material-icons">dvr</i></a>
+                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i
+                                                    className="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -230,9 +284,12 @@ function ListProduct(props) {
                                             <td>66</td>
                                             <td>2012/11/27</td>
                                             <td className="text-right">
-                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i className="material-icons">favorite</i></a>
-                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i className="material-icons">dvr</i></a>
-                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i className="material-icons">close</i></a>
+                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i
+                                                    className="material-icons">favorite</i></a>
+                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i
+                                                    className="material-icons">dvr</i></a>
+                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i
+                                                    className="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -242,9 +299,12 @@ function ListProduct(props) {
                                             <td>64</td>
                                             <td>2010/06/09</td>
                                             <td className="text-right">
-                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i className="material-icons">favorite</i></a>
-                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i className="material-icons">dvr</i></a>
-                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i className="material-icons">close</i></a>
+                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i
+                                                    className="material-icons">favorite</i></a>
+                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i
+                                                    className="material-icons">dvr</i></a>
+                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i
+                                                    className="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -254,9 +314,12 @@ function ListProduct(props) {
                                             <td>59</td>
                                             <td>2009/04/10</td>
                                             <td className="text-right">
-                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i className="material-icons">favorite</i></a>
-                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i className="material-icons">dvr</i></a>
-                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i className="material-icons">close</i></a>
+                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i
+                                                    className="material-icons">favorite</i></a>
+                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i
+                                                    className="material-icons">dvr</i></a>
+                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i
+                                                    className="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -266,9 +329,12 @@ function ListProduct(props) {
                                             <td>41</td>
                                             <td>2012/10/13</td>
                                             <td className="text-right">
-                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i className="material-icons">favorite</i></a>
-                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i className="material-icons">dvr</i></a>
-                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i className="material-icons">close</i></a>
+                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i
+                                                    className="material-icons">favorite</i></a>
+                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i
+                                                    className="material-icons">dvr</i></a>
+                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i
+                                                    className="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -278,9 +344,12 @@ function ListProduct(props) {
                                             <td>35</td>
                                             <td>2012/09/26</td>
                                             <td className="text-right">
-                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i className="material-icons">favorite</i></a>
-                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i className="material-icons">dvr</i></a>
-                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i className="material-icons">close</i></a>
+                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i
+                                                    className="material-icons">favorite</i></a>
+                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i
+                                                    className="material-icons">dvr</i></a>
+                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i
+                                                    className="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -290,9 +359,12 @@ function ListProduct(props) {
                                             <td>30</td>
                                             <td>2011/09/03</td>
                                             <td className="text-right">
-                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i className="material-icons">favorite</i></a>
-                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i className="material-icons">dvr</i></a>
-                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i className="material-icons">close</i></a>
+                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i
+                                                    className="material-icons">favorite</i></a>
+                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i
+                                                    className="material-icons">dvr</i></a>
+                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i
+                                                    className="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -302,9 +374,12 @@ function ListProduct(props) {
                                             <td>40</td>
                                             <td>2009/06/25</td>
                                             <td className="text-right">
-                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i className="material-icons">favorite</i></a>
-                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i className="material-icons">dvr</i></a>
-                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i className="material-icons">close</i></a>
+                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i
+                                                    className="material-icons">favorite</i></a>
+                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i
+                                                    className="material-icons">dvr</i></a>
+                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i
+                                                    className="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -314,9 +389,12 @@ function ListProduct(props) {
                                             <td>21</td>
                                             <td>2011/12/12</td>
                                             <td className="text-right">
-                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i className="material-icons">favorite</i></a>
-                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i className="material-icons">dvr</i></a>
-                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i className="material-icons">close</i></a>
+                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i
+                                                    className="material-icons">favorite</i></a>
+                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i
+                                                    className="material-icons">dvr</i></a>
+                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i
+                                                    className="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -326,9 +404,12 @@ function ListProduct(props) {
                                             <td>23</td>
                                             <td>2010/09/20</td>
                                             <td className="text-right">
-                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i className="material-icons">favorite</i></a>
-                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i className="material-icons">dvr</i></a>
-                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i className="material-icons">close</i></a>
+                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i
+                                                    className="material-icons">favorite</i></a>
+                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i
+                                                    className="material-icons">dvr</i></a>
+                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i
+                                                    className="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -338,9 +419,12 @@ function ListProduct(props) {
                                             <td>47</td>
                                             <td>2009/10/09</td>
                                             <td className="text-right">
-                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i className="material-icons">favorite</i></a>
-                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i className="material-icons">dvr</i></a>
-                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i className="material-icons">close</i></a>
+                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i
+                                                    className="material-icons">favorite</i></a>
+                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i
+                                                    className="material-icons">dvr</i></a>
+                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i
+                                                    className="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -350,9 +434,12 @@ function ListProduct(props) {
                                             <td>42</td>
                                             <td>2010/12/22</td>
                                             <td className="text-right">
-                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i className="material-icons">favorite</i></a>
-                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i className="material-icons">dvr</i></a>
-                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i className="material-icons">close</i></a>
+                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i
+                                                    className="material-icons">favorite</i></a>
+                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i
+                                                    className="material-icons">dvr</i></a>
+                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i
+                                                    className="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -362,9 +449,12 @@ function ListProduct(props) {
                                             <td>28</td>
                                             <td>2010/11/14</td>
                                             <td className="text-right">
-                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i className="material-icons">favorite</i></a>
-                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i className="material-icons">dvr</i></a>
-                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i className="material-icons">close</i></a>
+                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i
+                                                    className="material-icons">favorite</i></a>
+                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i
+                                                    className="material-icons">dvr</i></a>
+                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i
+                                                    className="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -374,9 +464,12 @@ function ListProduct(props) {
                                             <td>28</td>
                                             <td>2011/06/07</td>
                                             <td className="text-right">
-                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i className="material-icons">favorite</i></a>
-                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i className="material-icons">dvr</i></a>
-                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i className="material-icons">close</i></a>
+                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i
+                                                    className="material-icons">favorite</i></a>
+                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i
+                                                    className="material-icons">dvr</i></a>
+                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i
+                                                    className="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -386,9 +479,12 @@ function ListProduct(props) {
                                             <td>48</td>
                                             <td>2010/03/11</td>
                                             <td className="text-right">
-                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i className="material-icons">favorite</i></a>
-                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i className="material-icons">dvr</i></a>
-                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i className="material-icons">close</i></a>
+                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i
+                                                    className="material-icons">favorite</i></a>
+                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i
+                                                    className="material-icons">dvr</i></a>
+                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i
+                                                    className="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -398,9 +494,12 @@ function ListProduct(props) {
                                             <td>20</td>
                                             <td>2011/08/14</td>
                                             <td className="text-right">
-                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i className="material-icons">favorite</i></a>
-                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i className="material-icons">dvr</i></a>
-                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i className="material-icons">close</i></a>
+                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i
+                                                    className="material-icons">favorite</i></a>
+                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i
+                                                    className="material-icons">dvr</i></a>
+                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i
+                                                    className="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -410,9 +509,12 @@ function ListProduct(props) {
                                             <td>37</td>
                                             <td>2011/06/02</td>
                                             <td className="text-right">
-                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i className="material-icons">favorite</i></a>
-                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i className="material-icons">dvr</i></a>
-                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i className="material-icons">close</i></a>
+                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i
+                                                    className="material-icons">favorite</i></a>
+                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i
+                                                    className="material-icons">dvr</i></a>
+                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i
+                                                    className="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -422,9 +524,12 @@ function ListProduct(props) {
                                             <td>53</td>
                                             <td>2009/10/22</td>
                                             <td className="text-right">
-                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i className="material-icons">favorite</i></a>
-                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i className="material-icons">dvr</i></a>
-                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i className="material-icons">close</i></a>
+                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i
+                                                    className="material-icons">favorite</i></a>
+                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i
+                                                    className="material-icons">dvr</i></a>
+                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i
+                                                    className="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -434,9 +539,12 @@ function ListProduct(props) {
                                             <td>27</td>
                                             <td>2011/05/07</td>
                                             <td className="text-right">
-                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i className="material-icons">favorite</i></a>
-                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i className="material-icons">dvr</i></a>
-                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i className="material-icons">close</i></a>
+                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i
+                                                    className="material-icons">favorite</i></a>
+                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i
+                                                    className="material-icons">dvr</i></a>
+                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i
+                                                    className="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -446,9 +554,12 @@ function ListProduct(props) {
                                             <td>22</td>
                                             <td>2008/10/26</td>
                                             <td className="text-right">
-                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i className="material-icons">favorite</i></a>
-                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i className="material-icons">dvr</i></a>
-                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i className="material-icons">close</i></a>
+                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i
+                                                    className="material-icons">favorite</i></a>
+                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i
+                                                    className="material-icons">dvr</i></a>
+                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i
+                                                    className="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -458,9 +569,12 @@ function ListProduct(props) {
                                             <td>46</td>
                                             <td>2011/03/09</td>
                                             <td className="text-right">
-                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i className="material-icons">favorite</i></a>
-                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i className="material-icons">dvr</i></a>
-                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i className="material-icons">close</i></a>
+                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i
+                                                    className="material-icons">favorite</i></a>
+                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i
+                                                    className="material-icons">dvr</i></a>
+                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i
+                                                    className="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -470,9 +584,12 @@ function ListProduct(props) {
                                             <td>47</td>
                                             <td>2009/12/09</td>
                                             <td className="text-right">
-                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i className="material-icons">favorite</i></a>
-                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i className="material-icons">dvr</i></a>
-                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i className="material-icons">close</i></a>
+                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i
+                                                    className="material-icons">favorite</i></a>
+                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i
+                                                    className="material-icons">dvr</i></a>
+                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i
+                                                    className="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -482,9 +599,12 @@ function ListProduct(props) {
                                             <td>51</td>
                                             <td>2008/12/16</td>
                                             <td className="text-right">
-                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i className="material-icons">favorite</i></a>
-                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i className="material-icons">dvr</i></a>
-                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i className="material-icons">close</i></a>
+                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i
+                                                    className="material-icons">favorite</i></a>
+                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i
+                                                    className="material-icons">dvr</i></a>
+                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i
+                                                    className="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -494,9 +614,12 @@ function ListProduct(props) {
                                             <td>41</td>
                                             <td>2010/02/12</td>
                                             <td className="text-right">
-                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i className="material-icons">favorite</i></a>
-                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i className="material-icons">dvr</i></a>
-                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i className="material-icons">close</i></a>
+                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i
+                                                    className="material-icons">favorite</i></a>
+                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i
+                                                    className="material-icons">dvr</i></a>
+                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i
+                                                    className="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -506,9 +629,12 @@ function ListProduct(props) {
                                             <td>62</td>
                                             <td>2009/02/14</td>
                                             <td className="text-right">
-                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i className="material-icons">favorite</i></a>
-                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i className="material-icons">dvr</i></a>
-                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i className="material-icons">close</i></a>
+                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i
+                                                    className="material-icons">favorite</i></a>
+                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i
+                                                    className="material-icons">dvr</i></a>
+                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i
+                                                    className="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -518,9 +644,12 @@ function ListProduct(props) {
                                             <td>37</td>
                                             <td>2008/12/11</td>
                                             <td className="text-right">
-                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i className="material-icons">favorite</i></a>
-                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i className="material-icons">dvr</i></a>
-                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i className="material-icons">close</i></a>
+                                                <a href="#" className="btn btn-link btn-info btn-just-icon like"><i
+                                                    className="material-icons">favorite</i></a>
+                                                <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i
+                                                    className="material-icons">dvr</i></a>
+                                                <a href="#" className="btn btn-link btn-danger btn-just-icon remove"><i
+                                                    className="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         </tbody>
