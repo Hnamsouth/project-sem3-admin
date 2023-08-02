@@ -18,6 +18,7 @@ function ListCategory(props) {
         dispatch({type: "SHOW_LOADING"});
 
         const rs = await create(category);
+        categories.push(category)
 
         dispatch({type: "HIDE_LOADING"});
 
@@ -40,7 +41,7 @@ function ListCategory(props) {
     }
     useEffect(() => {
         list()
-    }, [categories])
+    }, [])
 
 
     return (
