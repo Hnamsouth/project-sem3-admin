@@ -9,3 +9,15 @@ export const login =async (data)=>{
         return {};
     }
 }
+
+export const CheckToken = async () =>{
+    const url = "auth/check-token";
+    const token =localStorage.getItem("token");
+    api.defaults.headers.common["Authorization"]=`Bearer ${token}`;
+    try {
+        let rs = await api.post(url);
+        return rs.data.checkToken
+    } catch (error) {
+        return false;
+    }
+}

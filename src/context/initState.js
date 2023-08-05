@@ -1,7 +1,8 @@
+const token = localStorage.getItem("token");
 const STATE={
     cart:[],
     favourites:[],
-    token:null,
+    token:token,
     loading:false,
     afterScript:[],
     userStyle:null
