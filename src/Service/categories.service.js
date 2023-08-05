@@ -1,4 +1,3 @@
-
 import api from "./api";
 
 const URL = "category";
@@ -16,7 +15,7 @@ export const get = async (id=null)=>{
 export const create = async (data)=>{
     try {
         const url=URL+"/create";
-        const rs = await api.post(url,{Name:data.name});
+        const rs = await api.post(url,data);
         return rs.data;
     } catch (error) {
         return false;
@@ -32,7 +31,7 @@ export const update = async (data)=>{
         return false;
     }
 }
-export const deleteC = async (id)=>{
+export const deleteP = async (id)=>{
     try {
         const url=URL+"/delete";
         const rs = await api.delete(url,{Id:id});
