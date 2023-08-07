@@ -64,20 +64,20 @@ const Sidebar = () => {
                     <div className="collapse" id="componentsExamples">
                         <ul className="nav">
                             <li className="nav-item ">
-                                <a className="nav-link" href="components/buttons.html">
+                                <a className="nav-link" >
                                     <span className="sidebar-mini"> L </span>
                                     {/*<span className="sidebar-normal"> </span>*/}
                                     <Link style={{color: "white"}} className={'sidebar-normal'} to={'/list-product'}> List Product</Link>
                                 </a>
                             </li>
                             <li className="nav-item ">
-                                <a className="nav-link" href="components/grid.html">
+                                <a className="nav-link">
                                     <span className="sidebar-mini"> C </span>
                                     <Link style={{color: "white"}} className={'sidebar-normal'} to={'/create-product'}> Create Product</Link>
                                 </a>
                             </li>
                             <li className="nav-item ">
-                                <a className="nav-link" href="components/grid.html">
+                                <a className="nav-link" >
                                     <span className="sidebar-mini"> GS </span>
                                     <span className="sidebar-normal"> Grid System </span>
                                 </a>
@@ -99,6 +99,12 @@ const Sidebar = () => {
                                 <Link className="nav-link" to={'/list-category'}>
                                     <span className="sidebar-mini"> L </span>
                                     <span className="sidebar-normal"> List Category </span>
+                                </Link>
+                            </li>
+                            <li className="nav-item ">
+                                <Link className="nav-link" to={'/list-category-details'}>
+                                    <span className="sidebar-mini"> L </span>
+                                    <span className="sidebar-normal"> List Category Details </span>
                                 </Link>
                             </li>
 
