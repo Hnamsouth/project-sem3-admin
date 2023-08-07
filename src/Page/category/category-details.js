@@ -8,25 +8,37 @@ import {Helmet} from "react-helmet";
 import Select from "react-select";
 import {forEach} from "react-bootstrap/ElementChildren";
 import {selectOptions} from "@testing-library/user-event/dist/select-options";
+import * as yup from "yup";
+import {useForm} from "react-hook-form";
+import {yupResolver} from "@hookform/resolvers/yup";
 
 function CategoryDetails(props) {
 
     const {state, dispatch} = useContext(UserContext)
-    const [categoryDetail, setCategoryDetail] = useState({Name: "", categoryId:""});
+    // const [categoryDetail, setCategoryDetail] = useState({Name: "", categoryId:""});
     const [categoryDetailsList, setCategoryDetailList] = useState([]);
-    const [selectedValue, setSelectedValue] = useState("");
+    // const [selectedValue, setSelectedValue] = useState("");
 
 
     const [categories, setCategories] = useState([]);
 
+    const schema = yup.object({
+        Name:yup.string().required().min(4).max(100,'quá số lượng'),
+        CategoryId:yup.string().required().min(0),
 
+    }).required();
+
+    const {register,handleSubmit,formState:{errors}}=useForm({
+        resolver:yupResolver(schema),
+    })
     const submit = async (data) => {
-        data.preventDefault();
+        // data.preventDefault();
         dispatch({type: "SHOW_LOADING"});
-        const rs = await createCategoryDetails(categoryDetail);
-        categoryDetailsList.push(categoryDetail)
-
+        const rs = await createCategoryDetails(data);
+        console.log(data)
+        categoryDetailsList.push(rs)
         dispatch({type: "HIDE_LOADING"});
+
 
 
     }
@@ -34,18 +46,17 @@ function CategoryDetails(props) {
         dispatch({type: "SHOW_LOADING"});
         const categoryDetailsList = await getCategoryDetails();
         setCategoryDetailList(categoryDetailsList)
-
         dispatch({type: "HIDE_LOADING"});
 
 
     }
 
-    const handleInput = (event) => {
-        categoryDetail[event.target.name] = event.target.value;
-        categoryDetail.categoryId=selectedValue;
-        setCategoryDetail(categoryDetail);
-
-    }
+    // const handleInput = (event) => {
+    //     categoryDetail[event.target.name] = event.target.value;
+    //     categoryDetail.categoryId=selectedValue;
+    //     setCategoryDetail(categoryDetail);
+    //
+    // }
     const list = async () => {
         dispatch({type: "SHOW_LOADING"});
         const categories = await get();
@@ -56,10 +67,9 @@ function CategoryDetails(props) {
 
     }
 
-    const handleChange = (event) => {
-        setSelectedValue(event.target.value);
-        console.log(selectedValue)
-    };
+    // const handleChange = (event) => {
+    //     setSelectedValue(event.target.value);
+    // };
 
 
 
@@ -88,14 +98,14 @@ function CategoryDetails(props) {
                                     </div>
                                 </div>
                                 <div className="card-body ">
-                                    <form method="post" className="form-horizontal">
+                                    <form method="post" onSubmit={handleSubmit(submit)} className="form-horizontal">
                                         <div className="row">
                                             <label className="col-sm-2 col-form-label">Name</label>
                                             <div className="col-sm-10">
                                                 <div className="form-group">
-                                                    <input onChange={handleInput} name={'name'} type="text"
+                                                    <input {...register('Name')} type="text"
                                                            className="form-control" />
-                                                    <span className="bmd-help">A block of help text that breaks onto a new line.</span>
+                                                    <span className="bmd-help">{errors.Name?.message}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -104,7 +114,7 @@ function CategoryDetails(props) {
 
                                             <div className="col-sm-10">
                                                 <div className="form-group">
-                                                    <select onChange={handleChange} className={'form-select form-control'} name={'categoryId'}>
+                                                    <select {...register('CategoryId')} className={'form-select form-control'} >
                                                         {
                                                             categories.map((option) => (
                                                                 <option value={option.id} >{option.name}</option>
@@ -117,7 +127,7 @@ function CategoryDetails(props) {
                                         </div>
                                         <div className="row">
                                             <div className="col-sm-10">
-                                                <button onClick={submit} type={'submit'}
+                                                <button  type={'submit'}
                                                         className={'btn btn-primary '}>Submit
                                                 </button>
                                             </div>
@@ -166,7 +176,7 @@ function CategoryDetails(props) {
 
                                                         <tr key={i}>
                                                             <td>{e.name}</td>
-                                                            <td>{e.categoryId}</td>
+                                                            <td>{e.category.name}</td>
                                                             <td className="text-right">
                                                                 <a href="#"
                                                                    className="btn btn-link btn-info btn-just-icon like"><i
