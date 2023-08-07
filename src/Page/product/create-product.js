@@ -2,13 +2,9 @@ import React, { useState } from 'react';
 import * as yup from "yup";
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
-import { async } from 'q';
-import ListWithUpload from './FileUpload/ListUpload';
 import { Helmet } from 'react-helmet';
 import { end } from '@popperjs/core';
 
-import Blob from 'blob'
-import FormData from 'form-data'
 import Files from 'react-files'
 
 function CreateProduct(props) {
