@@ -13,9 +13,28 @@ export const get = async (id=null)=>{
 }
 
 export const create = async (data)=>{
+       const formdata = new FormData();
+        formdata.append("Name",data.Name);
+        formdata.append("Price",data.Price);
+        formdata.append("Description",data.Description);
+        formdata.append("CategoryId",data.CategoryId);
+        formdata.append("ColorName",data.ColorName);
+        formdata.append("Gender",data.Gender);
+        formdata.append("OpenSale",data.OpenSale);
+        formdata.append("Status",data.Status);
+        formdata.append("CategoryDetailId",data.CategoryDetailId);
+        formdata.append("KindofsportId",data.KindofsportId);
+        // formdata.append("Img",data.Img);
+        console.log(formdata)
+    const config = {
+        headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+    };
     try {
-        const url=URL+"/create";
-        const rs = await api.post(url,{Name:data.name});
+        const url=URL;
+     
+        const rs = await api.post(url,formdata,config);
         return rs.data;
     } catch (error) {
         return false;

@@ -1,11 +1,21 @@
 import api from "./api";
 
 const URL = "category";
-export const get = async (id=null)=>{
+export const getCtgr = async (id=null)=>{
 
     try {
         const url =id==null ? URL: URL + id;
         const rs = await api.get(url);
+        return rs.data;
+    } catch (error) {
+        return [];
+    }
+}
+
+export const getKosp = async ()=>{
+
+    try {
+        const rs = await api.get("kind-of-sport");
         return rs.data;
     } catch (error) {
         return [];
