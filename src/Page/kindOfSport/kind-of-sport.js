@@ -1,121 +1,80 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {Link} from "react-router-dom";
 import UserContext from "../../context/userContext";
-
-import {createCategoryDetails, getCategoryDetails} from "../../Service/categoryDetails.service.js";
-import {get} from "../../Service/categories.service.js"
+import {create, get} from "../../Service/kindOfSport.service.js";
 import {Helmet} from "react-helmet";
-import Select from "react-select";
-import {forEach} from "react-bootstrap/ElementChildren";
-import {selectOptions} from "@testing-library/user-event/dist/select-options";
-import * as yup from "yup";
-import {useForm} from "react-hook-form";
-import {yupResolver} from "@hookform/resolvers/yup";
 
-function CategoryDetails(props) {
-
+function KindOfSport(props) {
     const {state, dispatch} = useContext(UserContext)
-    const [categoryDetailsList, setCategoryDetailList] = useState([]);
-    const [categories, setCategories] = useState([]);
+    const [kindOfSport, setKindOfSport] = useState({Name: ""});
+    const [listKindOfSport, setListKindOfSport] = useState([]);
 
-    const schema = yup.object({
-        Name:yup.string().required().min(4).max(100,'quá số lượng'),
-        CategoryId:yup.number().required().min(0),
 
-    }).required();
-
-    const {register,handleSubmit,formState:{errors}}=useForm({
-        resolver:yupResolver(schema),
-    })
 
     const submit = async (data) => {
-        // data.preventDefault();
+        data.preventDefault();
         dispatch({type: "SHOW_LOADING"});
-        const rs = await createCategoryDetails(data);
-        categoryDetailsList.push(rs)
-        dispatch({type: "HIDE_LOADING"});
 
+        const rs = await create(kindOfSport);
+        listKindOfSport.push(kindOfSport)
 
-
-    }
-    const listCategoryDetails = async () => {
-        dispatch({type: "SHOW_LOADING"});
-        const categoryDetailsList = await getCategoryDetails();
-        setCategoryDetailList(categoryDetailsList)
         dispatch({type: "HIDE_LOADING"});
 
 
     }
+    const handleInput = (event) => {
+        kindOfSport[event.target.name] = event.target.value;
+        setKindOfSport(kindOfSport);
+    }
+
 
     const list = async () => {
         dispatch({type: "SHOW_LOADING"});
-        const categories = await get();
-        setCategories(categories);
+        const listKindOfSport = await get();
+        setListKindOfSport(listKindOfSport);
 
         dispatch({type: "HIDE_LOADING"});
 
 
     }
-
-
-
-
-
-
-
     useEffect(() => {
-        listCategoryDetails();
         list()
     }, [])
-    return (
-        <div>
 
+
+    return (
+
+        <div>
             <div className="content">
                 <Helmet>
-                    <script src="../admin/assets/js/plugins/jquery.dataTables.min.js" type="text/javascript"></script>
-                    <script src="../admin/assets/demo/datatable.js" type="text/javascript"/>
+                    <script src="../admin/assets/js/plugins/jquery.dataTables.min.js" type = "text/javascript" ></script>
+                    <script src = "../admin/assets/demo/datatable.js" type = "text/javascript" />
                 </Helmet>
                 <div className="container-fluid">
-                    <h1>List Category Details</h1>
+                    <h1>Kind Of Sport</h1>
                     <div className="row">
                         <div className="col-md-12">
                             <div className="card ">
                                 <div className="card-header card-header-rose card-header-text">
                                     <div className="card-text">
-                                        <h4 className="card-title">Create Category Details</h4>
+                                        <h4 className="card-title">Create</h4>
                                     </div>
                                 </div>
                                 <div className="card-body ">
-                                    <form method="post" onSubmit={handleSubmit(submit)} className="form-horizontal">
+                                    <form method="post" className="form-horizontal">
                                         <div className="row">
                                             <label className="col-sm-2 col-form-label">Name</label>
                                             <div className="col-sm-10">
                                                 <div className="form-group">
-                                                    <input {...register('Name')} type="text"
-                                                           className="form-control" />
-                                                    <span className="bmd-help">{errors.Name?.message}</span>
+                                                    <input onChange={handleInput} name={'name'} type="text"
+                                                           className="form-control"/>
+                                                    <span className="bmd-help">A block of help text that breaks onto a new line.</span>
                                                 </div>
                                             </div>
                                         </div>
                                         <div className="row">
-                                            <label className="col-sm-2 col-form-label">Category</label>
-
-                                            <div className="col-sm-10">
-                                                <div className="form-group">
-                                                    <select {...register('CategoryId')} className={'form-select form-control'} >
-                                                        {
-                                                            categories.map((option) => (
-                                                                <option value={option.id} >{option.name}</option>
-                                                            ))
-                                                        }
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div className="row">
-                                            <div className="col-sm-10">
-                                                <button  type={'submit'}
+                                            <div className="col-sm-10
+                                   ">
+                                                <button onClick={submit} type={'submit'}
                                                         className={'btn btn-primary '}>Submit
                                                 </button>
                                             </div>
@@ -146,25 +105,22 @@ function CategoryDetails(props) {
                                             <thead>
                                             <tr>
                                                 <th>Name</th>
-                                                <th>Category</th>
                                                 <th className="disabled-sorting text-right">Actions</th>
                                             </tr>
                                             </thead>
                                             <tfoot>
                                             <tr>
                                                 <th>Name</th>
-                                                <th>Category</th>
                                                 <th className="text-right">Actions</th>
                                             </tr>
                                             </tfoot>
                                             <tbody>
                                             {
-                                                categoryDetailsList.map((e, i) => {
+                                                listKindOfSport.map((e, i) => {
                                                     return (
 
                                                         <tr key={i}>
                                                             <td>{e.name}</td>
-                                                            <td>{e.category.name}</td>
                                                             <td className="text-right">
                                                                 <a href="#"
                                                                    className="btn btn-link btn-info btn-just-icon like"><i
@@ -197,11 +153,9 @@ function CategoryDetails(props) {
             </div>
 
         </div>
-
     );
 }
 
-export default CategoryDetails;
 
 
-
+export default KindOfSport;

@@ -13,6 +13,8 @@ import ListCategory from "./Page/category/list-category";
 import Loading from "./Component/loading";
 import FormEXP from "./Page/form/FormEx";
 import CategoryDetails from "./Page/category/category-details";
+import KindOfSport from "./Page/kindOfSport/kind-of-sport";
+import Size from "./Page/size/size";
 
 
 function App() {
@@ -29,6 +31,8 @@ function App() {
           <Route  path="/create-product"  element={iAdmin(<CreateProduct/>,false)}/>
           <Route  path="/list-category"  element={iAdmin(<ListCategory/>,false)}/>
           <Route  path="/list-category-details"  element={iAdmin(<CategoryDetails/>,false)}/>
+          <Route  path="/kind-of-sport"  element={iAdmin(<KindOfSport/>,false)}/>
+          <Route  path="/size"  element={iAdmin(<Size/>,false)}/>
           <Route  path="/" exact  element={iAdmin(<AdminLogin/>,true)}/>
           <Route  path="/form-ex"  element={iAdmin(<FormEXP/>,true)}/>
           <Route  path='*' element={<div>Page Not FOUND - south</div>}/>
