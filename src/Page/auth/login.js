@@ -8,6 +8,7 @@ import { useNavigate  } from 'react-router-dom';
 import * as yup from "yup"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { useForm } from "react-hook-form";
+import { Helmet } from "react-helmet";
 const AdminLogin =()=>{
     const {state,dispatch}=useContext(UserContext)
     let navigate = useNavigate();
@@ -37,8 +38,9 @@ const AdminLogin =()=>{
 
     return (
         <form class="form" method="post" onSubmit={handleSubmit(submit)}>
-            <Link to={"/"}>go home</Link>
-
+        <Helmet>
+            
+        </Helmet>
             <div class="card card-login card-hidden">
             <div class="card-header card-header-rose text-center">
                 <h4 class="card-title">Login</h4>
