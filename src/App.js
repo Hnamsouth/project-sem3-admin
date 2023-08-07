@@ -36,7 +36,6 @@ function App() {
   return (
     <UserProvider value={{state,dispatch}}>
       <Loading display={state.loading}/>
-
       <RouterProvider router={router}/> 
     </UserProvider>
   );
