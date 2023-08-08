@@ -15,7 +15,7 @@ export const get = async (id=null)=>{
 export const create = async (data)=>{
     try {
         const url=URL+"/create";
-        const rs = await api.post(url,data);
+        const rs = await api.post(url,{Name:data.name});
         return rs.data;
     } catch (error) {
         return false;
@@ -40,3 +40,4 @@ export const deleteP = async (id)=>{
         return false;
     }
 }
+

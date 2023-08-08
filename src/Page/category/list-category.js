@@ -75,8 +75,7 @@ function ListCategory(props) {
                                             </div>
                                         </div>
                                         <div className="row">
-                                            <div className="col-sm-10
-                                   ">
+                                            <div className="col-sm-10">
                                                 <button onClick={submit} type={'submit'}
                                                         className={'btn btn-primary '}>Submit
                                                 </button>

@@ -15,7 +15,9 @@ export const get = async (id=null)=>{
 export const create = async (data)=>{
     try {
         const url=URL+"/create";
-        const rs = await api.post(url,{Name:data.name});
+        const rs = await api.post(url,{Name:data.name,Price:data.price,Description:data.description,
+            CategoryId:data.categoryId,KindOfSport:data.kindOfSport,CategoryDetailId:data.categoryDetailId,
+            Gender:data.gender,OpenSale:data.openSale,Status:data.status,ColorName:data.color});
         return rs.data;
     } catch (error) {
         return false;

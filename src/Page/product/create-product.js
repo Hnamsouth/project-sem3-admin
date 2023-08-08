@@ -1,6 +1,29 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { create } from '../../Service/products.service';
+import UserContext from '../../context/userContext';
+import { get } from '../../Service/categories.service';
 
 function CreateProduct(props) {
+
+    const [categories, setCategories] = useState([]);
+    
+    const list = async () => {
+        const categories = await get();
+        setCategories(categories);
+
+    }
+
+    useEffect(() => {
+        list()
+    }, [])
+
+    const submit = async(data) => {
+        data.preventDefault();
+        const rs = await create; 
+    }
+
+
+
     return (
         <div className={'container'}>
             <div className="col-md-12">
@@ -11,54 +34,90 @@ function CreateProduct(props) {
                         </div>
                     </div>
                     <div className="card-body ">
-                        <form method="get" action="https://demos.creative-tim.com/" className="form-horizontal">
+                        <form method="post" className="form-horizontal">
                             <div className="row">
-                                <label className="col-sm-2 col-form-label">With help</label>
+                                <label className="col-sm-2 col-form-label">Name</label>
                                 <div className="col-sm-10">
                                     <div className="form-group">
-                                        <input type="text" className="form-control" />
-                                        <span className="bmd-help">A block of help text that breaks onto a new line.</span>
+                                        <input type="text" className="form-control" name={'name'} />
+                                        <span className="bmd-help">Enter name.</span>
                                     </div>
                                 </div>
                             </div>
                             <div className="row">
-                                <label className="col-sm-2 col-form-label">Password</label>
+                                <label className="col-sm-2 col-form-label">Price</label>
                                 <div className="col-sm-10">
                                     <div className="form-group">
-                                        <input type="password" className="form-control" />
+                                        <input type="text" name={'price'} className="form-control" />
                                     </div>
                                 </div>
                             </div>
                             <div className="row">
-                                <label className="col-sm-2 col-form-label">Placeholder</label>
+                                <label className="col-sm-2 col-form-label">Description</label>
                                 <div className="col-sm-10">
                                     <div className="form-group">
-                                        <input type="text" className="form-control" placeholder="placeholder" />
+                                        <textarea type="text" name={'description'} className="form-control form-control-lg" rows={4}/>
                                     </div>
                                 </div>
                             </div>
                             <div className="row">
-                                <label className="col-sm-2 col-form-label">Disabled</label>
+                                <label className="col-sm-2 col-form-label">Color</label>
                                 <div className="col-sm-10">
                                     <div className="form-group">
-                                        <input type="text" className="form-control" defaultValue="Disabled input here.." disabled />
+                                        <input type="text" name={'color'} className="form-control" />
                                     </div>
                                 </div>
                             </div>
-                            <div className="row">
-                                <label className="col-sm-2 col-form-label">Static control</label>
-                                <div className="col-sm-10">
-                                    <div className="form-group">
-                                        <p className="form-control-static"><a href="https://demos.creative-tim.com/cdn-cgi/l/email-protection" className="__cf_email__" data-cfemail="9df5f8f1f1f2ddfeeff8fce9f4ebf8b0e9f4f0b3fef2f0">[email&nbsp;protected]</a></p>
+
+
+                            <div className='row'>
+                                <label className='col-sm-2 col-form-label'>Category</label>
+                                <div className='col-sm-10'>
+                                    <div className='form-group'>
+                                        <select name={'categoryId'} className='form-control'>
+                                        {
+                                            categories.map((e) =>{
+                                                return (
+                                                <option value={e.id}>{e.name}</option>
+                                                )
+                                            })
+                                        }
+                                        </select>
                                     </div>
                                 </div>
                             </div>
+
+
+                            <div className='row'>
+                                <label className='col-sm-2 col-form-label'>Category Detail</label>
+                                <div className='col-sm-10'>
+                                    <div className='form-group'>
+                                        <select name={'categoryDetailId'} className='form-control'>
+                                            <option ></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div className='row'>
+                                <label className='col-sm-2 col-form-label'>Kind</label>
+                                <div className='col-sm-10'>
+                                    <div className='form-group'>
+                                        <select name={'kindOfSport'} className='form-control'>
+                                            <option ></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+
                             <div className="row">
-                                <label className="col-sm-2 col-form-label label-checkbox">Checkboxes and radios</label>
+                                <label className="col-sm-2 col-form-label label-checkbox">Gender</label>
                                 <div className="col-sm-10 checkbox-radios">
                                     <div className="form-check">
                                         <label className="form-check-label">
-                                            <input className="form-check-input" type="checkbox" defaultValue /> First Checkbox
+                                            <input className="form-check-input" type="radio" name={'gender'} defaultValue="1" defaultChecked /> Men
                                             <span className="form-check-sign">
                         <span className="check" />
                       </span>
@@ -66,7 +125,7 @@ function CreateProduct(props) {
                                     </div>
                                     <div className="form-check">
                                         <label className="form-check-label">
-                                            <input className="form-check-input" type="checkbox" defaultValue /> Second Checkbox
+                                            <input className="form-check-input" type="radio" name={'gender'} defaultValue="2" /> Women
                                             <span className="form-check-sign">
                         <span className="check" />
                       </span>
@@ -74,16 +133,8 @@ function CreateProduct(props) {
                                     </div>
                                     <div className="form-check">
                                         <label className="form-check-label">
-                                            <input className="form-check-input" type="radio" name="exampleRadios" defaultValue="option2" defaultChecked /> First Radio
-                                            <span className="circle">
-                        <span className="check" />
-                      </span>
-                                        </label>
-                                    </div>
-                                    <div className="form-check">
-                                        <label className="form-check-label">
-                                            <input className="form-check-input" type="radio" name="exampleRadios" defaultValue="option1" /> Second Radio
-                                            <span className="circle">
+                                            <input className="form-check-input" type="radio" name={'gender'} defaultValue="" /> All
+                                            <span className="form-check-sign">
                         <span className="check" />
                       </span>
                                         </label>
@@ -91,11 +142,19 @@ function CreateProduct(props) {
                                 </div>
                             </div>
                             <div className="row">
-                                <label className="col-sm-2 col-form-label label-checkbox">Inline checkboxes</label>
+                                <label className="col-sm-2 col-form-label">Open Sale</label>
+                                <div className="col-sm-10">
+                                    <div className="form-group">
+                                        <input type='date' name={'openSale'} className="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <label className="col-sm-2 col-form-label label-checkbox">Status</label>
                                 <div className="col-sm-10 checkbox-radios">
                                     <div className="form-check form-check-inline">
                                         <label className="form-check-label">
-                                            <input className="form-check-input" type="checkbox" defaultValue /> a
+                                            <input className="form-check-input" type="radio" name={'status'} defaultValue='1' /> Open
                                             <span className="form-check-sign">
                         <span className="check" />
                       </span>
@@ -103,7 +162,7 @@ function CreateProduct(props) {
                                     </div>
                                     <div className="form-check form-check-inline">
                                         <label className="form-check-label">
-                                            <input className="form-check-input" type="checkbox" defaultValue /> b
+                                            <input className="form-check-input" type="radio" name={'status'} defaultValue='2' /> Close
                                             <span className="form-check-sign">
                         <span className="check" />
                       </span>
@@ -111,7 +170,7 @@ function CreateProduct(props) {
                                     </div>
                                     <div className="form-check form-check-inline">
                                         <label className="form-check-label">
-                                            <input className="form-check-input" type="checkbox" defaultValue /> c
+                                            <input className="form-check-input" type="radio" name={'status'} defaultValue='3' /> Opening soon
                                             <span className="form-check-sign">
                         <span className="check" />
                       </span>
