@@ -22,13 +22,12 @@ const AdminLogin =()=>{
         state.token=rs.token;
         // nếu bạn thiết lập tiêu đề "common" một lần, tiêu đề đó sẽ tự động được gửi cùng với mọi yêu cầu bạn thực hiện bằng Axios sau đó.
         api.defaults.headers.common["Authorization"] = `Bearer ${user.token}`;
-        navigate("/")
+        navigate("/dashboard")
     }
 
 
     return (
         <form class="form" method="post" onSubmit={submit}>
-            <button class="btn btn-rose btn-link btn-lg"><Link id="asd">go home</Link></button>
             <div class="card card-login card-hidden">
             <div class="card-header card-header-rose text-center">
                 <h4 class="card-title">Login</h4>

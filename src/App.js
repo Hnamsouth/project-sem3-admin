@@ -11,6 +11,10 @@ import ListProduct from "./Page/product/list-product";
 import CreateProduct from "./Page/product/create-product";
 import ListCategory from "./Page/category/list-category";
 import Loading from "./Component/loading";
+import FormEXP from "./Page/form/FormEx";
+import CategoryDetails from "./Page/category/category-details";
+import KindOfSport from "./Page/kindOfSport/kind-of-sport";
+import Size from "./Page/size/size";
 
 
 function App() {
@@ -21,12 +25,16 @@ function App() {
 
       <BrowserRouter>
         <Routes>
-          <Route  path="/" exact id='asd'  element={iAdmin(<AdminDashboard/>,false)}/>
-          <Route  path="/dashboard" element={iAdmin(null,false)}/>
+          <Route  path="/dashboard"  id='asd'  element={iAdmin(<AdminDashboard/>,false)}/>
+          {/*<Route  path="/dashboard-" element={iAdmin(null,false)}/>*/}
           <Route  path="/list-product" element={iAdmin(<ListProduct/>,false)}/>
           <Route  path="/create-product"  element={iAdmin(<CreateProduct/>,false)}/>
           <Route  path="/list-category"  element={iAdmin(<ListCategory/>,false)}/>
-          <Route  path="/login"  element={iAdmin(<AdminLogin/>,true)}/>
+          <Route  path="/list-category-details"  element={iAdmin(<CategoryDetails/>,false)}/>
+          <Route  path="/kind-of-sport"  element={iAdmin(<KindOfSport/>,false)}/>
+          <Route  path="/size"  element={iAdmin(<Size/>,false)}/>
+          <Route  path="/" exact  element={iAdmin(<AdminLogin/>,true)}/>
+          <Route  path="/form-ex"  element={iAdmin(<FormEXP/>,true)}/>
           <Route  path='*' element={<div>Page Not FOUND - south</div>}/>
         </Routes>
       </BrowserRouter>
