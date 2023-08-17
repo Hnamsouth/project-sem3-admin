@@ -47,7 +47,7 @@ function CreateProduct(props) {
     return (
         <div className={'container'}>
         <Helmet>
-            <script src='../admin/assets/demo/formExtended.js' type="text/javascript"></script>
+            {/* <script src='../admin/assets/demo/formExtended.js' type="text/javascript"></script> */}
         </Helmet>
             <div className="col-md-12">
                 <div className="card ">
@@ -90,11 +90,10 @@ function CreateProduct(props) {
                                 </div>
                                 <div className='col-sm-6'>
                                     <div class="form-group">
-                                        <input type="text" {...register("OpenSale")}  class="form-control datetimepicker" value="11/06/2018" placeholder='Choose OpenSale'/>
+                                        <input type="date" {...register("OpenSale")}  class="form-control datetimepicker" placeholder='Choose OpenSale'/>
                                         <span className='text-danger'>{errors.OpenSale?.message}</span>
                                     </div>
                                 </div>
-                                
                             </div>
                             <div className="row  mb-3">
                                 <div className='col-sm-6'>
@@ -107,13 +106,13 @@ function CreateProduct(props) {
                                     
                                 </div>
                                 <div className='col-sm-6'>
-                                <div class="form-group">
-                                            <select   class='selectpicker' data-style="select-with-transition"  {...register("Status")} title="Status">
-                                                <option value={1}>Male</option>
-                                                <option value={0}>FeMale</option>
-                                            </select>
-                                            <span className='text-danger'>{errors.Status?.message}</span>
-                                    </div>
+                                    <div className='form-group'>
+                                        <select   class='selectpicker' data-style="select-with-transition"  {...register("Status")} title="Status">
+                                            <option value={1}>Male</option>
+                                            <option value={0}>FeMale</option>
+                                        </select>
+                                        <span className='text-danger'>{errors.Status?.message}</span>
+                                    </div>        
                                 </div>
                             </div>
                             <div className="row  mb-3">
