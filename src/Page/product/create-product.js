@@ -6,7 +6,7 @@ import {yupResolver} from "@hookform/resolvers/yup";
 import { Helmet } from 'react-helmet';
 import { end } from '@popperjs/core';
 
-import Files from 'react-files'
+import Files from 'react-files';
 
 function CreateProduct(props) {
     const [files,setFiles]=useState([]);
