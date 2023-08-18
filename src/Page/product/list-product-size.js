@@ -1,29 +1,25 @@
 import React, { useState,useEffect,useContext } from 'react';
 import {Link} from "react-router-dom";
 import {Helmet, HelmetProvider} from 'react-helmet';
-import CreateProduct from './create-product';
-import { get, getPrdColor } from '../../Service/products.service';
+import { getPrdSize } from '../../Service/products.service';
 import UserContext from '../../context/userContext';
 
 import { useParams } from 'react-router-dom';
-import CreateProductColor from './create-product-color';
+import CreateProductSize from './create-product-size';
 
-function ListProductColor(props) {
+function ListProductSize(props) {
     const {state,dispatch}=useContext(UserContext)
-    const [prdColor,setprdColor] = useState([]);
-    const {pId} = useParams();
+    const [prdSize,setprdSize] = useState([]);
+    const {pclId} = useParams();
 
     const getProductColor = async ()=>{
         dispatch({type:"SHOW_LOADING"})
-        let rs = await getPrdColor(pId);
-        console.log(rs)
-        setprdColor(rs);
-        //dispatch({type:"UPDATE_PRODUCT",payload:rs})
-
+        let rs = await getPrdSize(pclId);
+        // console.log(rs)
+        setprdSize(rs);
     }
     useEffect(()=>{
         getProductColor();
-        // console.log(state.products)
         dispatch({type:"HIDE_LOADING"})
     },[])
 
@@ -44,7 +40,7 @@ function ListProductColor(props) {
                                     <i className="material-icons">assignment</i>
                                 </div>
                                 <button class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal">
-                                    Create Product Color
+                                    Create Product Size
                                 </button>
                             </div>
                             <div className="card-body">
@@ -56,42 +52,20 @@ function ListProductColor(props) {
                                         <thead>
                                         <tr>
                                             <th>Id</th>
-                                            <th>Img</th>
-                                            <th>Name</th>
-                                            <th>Product</th>
+                                            <th>Size</th>
+                                            <th>Qty</th>
                                             <th className="disabled-sorting">Actions</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                            {prdColor.length > 0 && prdColor.map(e=>{
+                                            {prdSize.length > 0 && prdSize.map(e=>{
                                                     return (
                                                         <tr>
                                                             <td>{e.id}</td>
-                                                            <td className='d-flex'>
-                                                            {e.productColorImages.length>0 && e.productColorImages.map((c,index)=>{
-                                                                if(index<3){
-                                                                    return (
-                                                                        <img src={c.url} width={50} height={50} style={{objectFit:'contain',marginRight:5+'px'}}/>
-                                                                    );
-                                                                }
-                                                                else if(index==3){
-                                                                    return (
-                                                                        <div className='product-img' >
-                                                                            <img  width={50} height={50} color='red' style={{backgroundColor:'darkgray'}}/>
-                                                                            <div class="centered">
-                                                                                <span style={{color:'black',fontSize:15+'px',fontWeight:400}}><strong>+ {e.productColorImages.length-3}</strong></span>
-                                                                            </div>
-                                                                        </div>
-                                                                    )
-                                                                }else{
-                                                                    return e;
-                                                                }
-                                                            })}
-                                                            </td>
-                                                            <td>{e.name}</td>
-                                                            <td>{e.productId}</td>
+                                                            <td>{e.size.name}</td>
+                                                            <td>{e.qty}</td>
                                                             <td class="">
-                                                                <Link to={"/list-product-size/"+e.id} className='btn btn-info'>
+                                                                <Link to={"/create-product-color/"+e.id} className='btn btn-info'>
                                                                     Add Size
                                                                 </Link>
                                                                 <a href="#" class="btn btn-warning">
@@ -124,7 +98,7 @@ function ListProductColor(props) {
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <CreateProductColor />
+                                    <CreateProductSize />
                                 </div>
                             </div>
                         </div>
@@ -135,4 +109,4 @@ function ListProductColor(props) {
     );
 }
 
-export default ListProductColor;
+export default ListProductSize;
