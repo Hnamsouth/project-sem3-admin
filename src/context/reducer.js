@@ -8,9 +8,12 @@ const reducer=(state,action)=>{// custom action: {type:...,payload:...}
         };
         case "ADD_SCRIPT":return {
             ...state,afterScript:action.payload
-        }
+        };
         case "ADD_USTYLE":return {
             ...state,userStyle:action.payload
+        };
+        case "UPDATE_PRODUCT":return {
+            ...state,products:action.payload
         }
         default: return state;
     }

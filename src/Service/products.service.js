@@ -11,30 +11,32 @@ export const get = async (id=null)=>{
         return [];
     }
 }
+export const getPrdColor = async (id)=>{
+
+    try {
+        const url =URL+("-color?id="+id);
+        const rs = await api.get(url);
+        return rs.data;
+    } catch (error) {
+        return [];
+    }
+}
+
 
 export const create = async (data)=>{
-       const formdata = new FormData();
-        formdata.append("Name",data.Name);
-        formdata.append("Price",data.Price);
-        formdata.append("Description",data.Description);
-        formdata.append("CategoryId",data.CategoryId);
-        formdata.append("ColorName",data.ColorName);
-        formdata.append("Gender",data.Gender);
-        formdata.append("OpenSale",data.OpenSale);
-        formdata.append("Status",data.Status);
-        formdata.append("CategoryDetailId",data.CategoryDetailId);
-        formdata.append("KindofsportId",data.KindofsportId);
-        // formdata.append("Img",data.Img);
-        console.log(formdata)
-    const config = {
-        headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-    };
     try {
         const url=URL;
-     
-        const rs = await api.post(url,formdata,config);
+        const rs = await api.post(url,data);
+        return rs.data;
+    } catch (error) {
+        return false;
+    }
+}
+
+export const create_pColor = async (data)=>{
+    try {
+        const url=URL+"-color";
+        const rs = await api.post(url,data);
         return rs.data;
     } catch (error) {
         return false;

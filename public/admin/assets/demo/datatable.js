@@ -10,7 +10,7 @@
         language: {
             search: "_INPUT_",
             searchPlaceholder: "Search records",
-        }
+        },
     });
 
     var table = $('#datatable').DataTable();

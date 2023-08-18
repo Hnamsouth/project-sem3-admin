@@ -4769,7 +4769,7 @@ button.close {
 }
 
 .modal {
-    position: fixed;
+    position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
@@ -4784,6 +4784,15 @@ button.close {
     overflow-y: auto
 }
 
+
+.modal-lagre {
+    width: 1200px;
+    margin: 0 auto
+}
+
+.modal-lagre .modal-body {
+    margin-top: 20px
+}
 .modal-dialog {
     position: relative;
     width: auto;
@@ -4891,6 +4900,10 @@ button.close {
 @media (min-width: 576px) {
     .modal-dialog {
         max-width: 500px;
+        margin: 1.75rem auto
+    }
+    .modal-lagre {
+        max-width: 1200px;
         margin: 1.75rem auto
     }
 

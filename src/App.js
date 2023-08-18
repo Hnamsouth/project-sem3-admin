@@ -14,18 +14,25 @@ import Loading from "./Component/loading";
 import RouteProtected from './Page/auth/Protected';
 import { CheckToken } from './Service/auth.service';
 import NotFound from './Page/NotFound';
+import CreateProductColor from './Page/product/create-product-color';
+import ListProductColor from './Page/product/list-product-color';
 
 const prepareRouter = (path,element,child)=>{
   return {
     path:path,
     element:<RouteProtected child={<LayoutAdmin main={element} auth={false}/>}/>,
-    loader:async ({})=>{return await CheckToken();},
+    loader:async ({})=>{
+      return true;
+      // await CheckToken();
+    },
   };
 }
 const router= createBrowserRouter([
   prepareRouter("/",<AdminDashboard/>),
   prepareRouter("/list-product",<ListProduct/>),
   prepareRouter("/create-product",<CreateProduct/>),
+  prepareRouter("/list-product-color/:pId",<ListProductColor/>),
+  prepareRouter("/create-product-color/:pId",<CreateProductColor/>),
   prepareRouter("/list-category",<ListCategory/>),
   { path:"/login", element:<LayoutAdmin main={<AdminLogin/>} auth={true}/>},
   { path:"*",element:<LayoutAdmin main={<NotFound/>} auth={true}/>}

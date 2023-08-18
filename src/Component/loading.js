@@ -11,7 +11,7 @@ function Loading(props) {
         left:0,
         backgroundColor:"#000000",
         opacity:0.5,
-        zIndex:100,
+        zIndex:1100,
         backgroundRepeat:"no-repeat",
         backgroundPosition:"center",
         backgroundImage:"url(loading.gif)",
