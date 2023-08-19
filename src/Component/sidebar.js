@@ -1,8 +1,8 @@
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
     return (<div className="sidebar" data-color="rose" data-background-color="black"
-                 data-image="../admin/assets/img/sidebar-1.jpg">
+        data-image="../admin/assets/img/sidebar-1.jpg">
         <div className="logo">
             <a href="http://www.creative-tim.com/" className="simple-text logo-mini">
                 CT
@@ -14,14 +14,14 @@ const Sidebar = () => {
         <div className="sidebar-wrapper">
             <div className="user">
                 <div className="photo">
-                    <img src="../admin/assets/img/faces/avatar.jpg"/>
+                    <img src="../admin/assets/img/faces/avatar.jpg" />
                 </div>
                 <div className="user-info">
                     <a data-toggle="collapse" href="#collapseExample" className="username">
-              <span>
-                Tania Andrew
-                <b className="caret"></b>
-              </span>
+                        <span>
+                            Tania Andrew
+                            <b className="caret"></b>
+                        </span>
                     </a>
                     <div className="collapse" id="collapseExample">
                         <ul className="nav">
@@ -67,15 +67,29 @@ const Sidebar = () => {
                                 <a className="nav-link">
                                     <span className="sidebar-mini"> L </span>
                                     {/*<span className="sidebar-normal"> </span>*/}
-                                    <Link style={{color: "white"}} className={'sidebar-normal'}
-                                          to={'/list-product'}> List Product</Link>
+                                    <Link style={{ color: "white" }} className={'sidebar-normal'}
+                                        to={'/list-product'}> List Product</Link>
                                 </a>
                             </li>
                             <li className="nav-item ">
                                 <a className="nav-link">
                                     <span className="sidebar-mini"> C </span>
-                                    <Link style={{color: "white"}} className={'sidebar-normal'}
-                                          to={'/create-product'}> Create Product</Link>
+                                    <Link style={{ color: "white" }} className={'sidebar-normal'}
+                                        to={'/create-product'}> Create Product</Link>
+                                </a>
+                            </li>
+                            <li className="nav-item ">
+                                <a className="nav-link" >
+                                    <span className="sidebar-mini"> S </span>
+                                        <Link style={{ color: "white" }} className={'sidebar-normal'} 
+                                        to={'/size'}>Size</Link>
+                                </a>
+                            </li>
+                            <li className="nav-item ">
+                                <a className="nav-link" >
+                                    <span className="sidebar-mini"> KOS </span>
+                                        <Link style={{ color: "white" }} className={'sidebar-normal'} 
+                                        to={'/kind-of-sport'}>Kind Of Sport</Link>
                                 </a>
                             </li>
                             <li className="nav-item ">
@@ -112,36 +126,6 @@ const Sidebar = () => {
 
                         </ul>
                     </div>
-                </li>
-                <li className="nav-item ">
-                    <a className="nav-link" data-toggle="collapse" href="#tablesExamples">
-                        <i className="material-icons">grid_on</i>
-                        <p> Kìnd Of Sport
-                            <b className="caret"></b>
-                        </p>
-                    </a>
-                    <div className="collapse" id="tablesExamples">
-                        <ul className="nav">
-                            <li className="nav-item ">
-                                <a className="nav-link">
-                                    <span className="sidebar-mini"> KOS </span>
-                                    <Link style={{color: "white"}} className={'sidebar-normal'} to={'/kind-of-sport'}>Kind
-                                        of sport </Link>
-                                </a>
-                            </li>
-
-                        </ul>
-                    </div>
-                </li>
-                <li className="nav-item ">
-                    <a className="nav-link" data-toggle="collapse">
-                        <i className="material-icons">place</i>
-                        <p><Link style={{color: "white"}} className={'sidebar-normal'} to={'/size'}>Size</Link>
-
-                            <b className="caret"></b>
-                        </p>
-
-                    </a>
                 </li>
                 <li className="nav-item ">
                     <a className="nav-link" href="widgets.html">

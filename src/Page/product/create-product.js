@@ -133,7 +133,7 @@ function CreateProduct(props) {
                                     </div>
                                 </div>
                             </div>
-                            <div className="row mb-3">
+                            <div className="row mb-4">
                                 <div className='col-sm-6'>
                                     <div className="form-check">
                                         <label className="form-check-label">
@@ -143,22 +143,17 @@ function CreateProduct(props) {
                                     </div>
                                     <div className="form-check">
                                             <label className="form-check-label">
-                                                <input className="form-check-input" type="radio"{...register("Gender")} defaultValue="1" /> FeMale
+                                                <input className="form-check-input" type="radio"{...register("Gender")} defaultValue="1" /> Female
                                                 <span className="circle">
                                                 <span className="check" /></span>
                                             </label>
                                     </div>
                                     <span className='text-danger'>{errors.Gender?.message}</span>
                                 </div>
-                                <div className='col-sm-6'>
-                                    <div class="form-group">
-                                        <input type="text" {...register("OpenSale")}  class="form-control datetimepicker" value="11/06/2018" placeholder='Choose OpenSale'/>
-                                        <span className='text-danger'>{errors.OpenSale?.message}</span>
-                                    </div>
-                                </div>
+                               
                                 
                             </div>
-                            <div className="row  mb-3">
+                            <div className="row  mb-4">
                                 <div className='col-sm-6'>
                                         <select class="form-control"  {...register("KindofsportId")}  title="Choose KindofsportId" >
                                         <option selected>Kind of sport</option>
@@ -180,55 +175,11 @@ function CreateProduct(props) {
                                             <span className='text-danger'>{errors.Status?.message}</span>
                                     </div>
                                 </div>
-                                <div className='col-sm-6'>
-                                    <div class="form-group">
-                                        <input type="date" {...register("OpenSale")}  class="form-control datetimepicker" placeholder='Choose OpenSale'/>
-                                        <span className='text-danger'>{errors.OpenSale?.message}</span>
-                                    </div>
-                                </div>
                             </div>
-                            <div className="row  mb-3">
-                                <div className='col-sm-6'>
-                                        <select class="selectpicker" data-style="select-with-transition" {...register("KindofsportId")} multiple title="Choose KindofsportId" data-size="7">
-                                            <option value="2">Paris </option>
-                                            <option value="24">Paris2 </option>
-                                            <option value="25">Paris3 </option>
-                                        </select>
-                                        <span className='text-danger'>{errors.KindofsportId?.message}</span>
-                                    
-                                </div>
-                                <div className='col-sm-6'>
-                                    <div className='form-group'>
-                                        <select   class='selectpicker' data-style="select-with-transition"  {...register("Status")} title="Status">
-                                            <option value={1}>Male</option>
-                                            <option value={0}>FeMale</option>
-                                        </select>
-                                        <span className='text-danger'>{errors.Status?.message}</span>
-                                    </div>        
-                                </div>
-                            </div>
-                            <div className="row  mb-3">
-                                <div className='col-sm-6'>
-                                    <select  class='selectpicker' data-style="select-with-transition"  {...register("CategoryId")} title='Category'>
-                                        <option selected>Select CategoryI </option>
-                                        <option value={1}>Male</option>
-                                        <option value={0}>FeMale</option>
-                                    </select>
-                                <span className='text-danger'>{errors.CategoryId?.message}</span>
-                                </div>
-                                <div className='col-sm-6'>
-                                    <select   class='selectpicker' data-style="select-with-transition"  {...register("CategoryDetail")}>
-                                        <option selected> CategoryDetail </option>
-                                        <option value={1}>Male</option>
-                                        <option value={0}>FeMale</option>
-                                    </select>
-                                    <span className='text-danger'>{errors.CategoryDetailId?.message}</span>
-                                </div>
-                            </div>
-                            <div className='row'>
-                                
-                            </div>
-                            <div className="row  mb-3">
+                            
+                           
+                            
+                            <div className="row  mb-4">
                                 <div className='col-sm-6'>
                                     <select class='form-control'  {...register("CategoryId")} onChange={e=>Change(e.target.value)}  >
                                         <option selected value="">Category</option>
@@ -248,8 +199,8 @@ function CreateProduct(props) {
                                     <span className='text-danger'>{errors.CategoryDetailId?.message}</span>
                                 </div>
                             </div>
-                            <div className='row'>
-                                <div className='col-sm-4'>
+                            <div className='row mb-4'>
+                                <div className='col-sm-6'>
                                     <select  class='form-control' {...register("ColorName")} title='Color'  >
                                         <option selected value="">Color Name</option>
                                         <option  value="Black">Black</option>
@@ -259,9 +210,18 @@ function CreateProduct(props) {
                                     </select>
                                     <span className='text-danger'>{errors.ColorName?.message}</span>
                                 </div>
-                                <div className='col-sm-8'>
+                                <div className='col-sm-6'>
                                     <div class="form-group">
-                                        <textarea type="text" {...register("Description")}  class="form-control"  placeholder='Description' rows={3}></textarea>
+                                        <input type="date" {...register("OpenSale")}  class="form-control datetimepicker" placeholder='Choose OpenSale'/>
+                                        <span className='text-danger'>{errors.OpenSale?.message}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div className='row mb-4'>
+                                <div className='col-sm-12'>
+                                    <div class="form-group">
+                                        <textarea type="text" {...register("Description")}  class="form-control"  placeholder='Description' rows={4}></textarea>
                                         <span className='text-danger'>{errors.Description?.message}</span>
                                     </div>
                                 </div>
@@ -321,7 +281,7 @@ function CreateProduct(props) {
                                         )}
                                 </div>
                                                 </div>*/}
-                                div class="form-group" style={{textAlign:end}}>
+                                <div class="form-group" style={{textAlign:end}}>
                                 <button type="submit" class="btn btn-github">
                                     <span>Create</span>
                                     <i class="icon-long-arrow-right"></i>

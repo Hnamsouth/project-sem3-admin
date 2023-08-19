@@ -10,6 +10,8 @@ import LayoutAdmin from "./Component/AdminLayout";
 import ListProduct from "./Page/product/list-product";
 import CreateProduct from "./Page/product/create-product";
 import ListCategory from "./Page/category/list-category";
+import Size from './Page/size/size';
+import KindOfSport from './Page/kindOfSport/kind-of-sport';
 import Loading from "./Component/loading";
 import RouteProtected from './Page/auth/Protected';
 import { CheckToken } from './Service/auth.service';
@@ -19,7 +21,7 @@ const prepareRouter = (path,element,child)=>{
   return {
     path:path,
     element:<RouteProtected child={<LayoutAdmin main={element} auth={false}/>}/>,
-    loader:async ({})=>{return await CheckToken();},
+    loader:async ({})=>{return await true;},
   };
 }
 const router= createBrowserRouter([
@@ -27,6 +29,8 @@ const router= createBrowserRouter([
   prepareRouter("/list-product",<ListProduct/>),
   prepareRouter("/create-product",<CreateProduct/>),
   prepareRouter("/list-category",<ListCategory/>),
+  prepareRouter("/size",<Size/>),
+  prepareRouter("/kind-of-sport",<KindOfSport/>),
   { path:"/login", element:<LayoutAdmin main={<AdminLogin/>} auth={true}/>},
   { path:"*",element:<LayoutAdmin main={<NotFound/>} auth={true}/>}
 ])
