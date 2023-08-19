@@ -1,3 +1,5 @@
+import {NavLink} from "react-bootstrap";
+
 const AdminNav =()=>{
     return (
         <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
@@ -60,7 +62,7 @@ const AdminNav =()=>{
                                 </p>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                                <a class="dropdown-item" href="#">Profile</a>
+                                <NavLink class="dropdown-item" href="/profile">Profile</NavLink>
                                 <a class="dropdown-item" href="#">Settings</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#">Log out</a>

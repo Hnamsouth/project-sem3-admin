@@ -15,6 +15,7 @@ import FormEXP from "./Page/form/FormEx";
 import CategoryDetails from "./Page/category/category-details";
 import KindOfSport from "./Page/kindOfSport/kind-of-sport";
 import Size from "./Page/size/size";
+import Profile from "./Page/auth/profile";
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <Routes>
           <Route  path="/dashboard"  id='asd'  element={iAdmin(<AdminDashboard/>,false)}/>
           {/*<Route  path="/dashboard-" element={iAdmin(null,false)}/>*/}
+          <Route  path="/profile" element={iAdmin(<Profile/>,false)}/>
           <Route  path="/list-product" element={iAdmin(<ListProduct/>,false)}/>
           <Route  path="/create-product"  element={iAdmin(<CreateProduct/>,false)}/>
           <Route  path="/list-category"  element={iAdmin(<ListCategory/>,false)}/>
