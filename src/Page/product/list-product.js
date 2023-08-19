@@ -9,7 +9,6 @@ import UserContext from '../../context/userContext';
 
 function ListProduct(props) {
     const {state,dispatch}=useContext(UserContext)
-    const [products,setProduct] =useState([]);
 
     const getProduct = async ()=>{
         dispatch({type:"SHOW_LOADING"})
@@ -37,7 +36,7 @@ function ListProduct(props) {
                                 <div className="card-icon">
                                     <i className="material-icons">assignment</i>
                                 </div>
-                                <button class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal">
+                                <button class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal" onClick={()=>dispatch({type:"EDIT_PRODUCT",payload:null})} >
                                     Create Product
                                 </button>
                             </div>
@@ -73,16 +72,16 @@ function ListProduct(props) {
                                                             <td>{e.categoryDetail.category.name + ("/ "+e.categoryDetail.name)}</td>
                                                             <td>{e.productColors.length}</td>
                                                             <td>{e.kindofsport.name}</td>
-                                                            <td>{e.status?"Stop":!e.status?"Open":"Coming Soon"}</td>
+                                                            <td>{e.status===1?"Stop":e.status===0?"Open":"Coming Soon"}</td>
                                                             <td>{e.gender?"Female":"Male"}</td>
                                                             <td>{new Date(e.openSale).toLocaleString()}</td>
                                                             <td class="">
-                                                                <Link to={"/list-product-color/"+e.id} className='btn btn-info'>
+                                                                <Link to={"/list-product-color/"+e.id} className='btn btn-outline-info'>
                                                                     Add Color
                                                                 </Link>
-                                                                <a href="#" class="btn btn-warning">
+                                                                <button class="btn btn-outline-danger" onClick={()=>dispatch({type:"EDIT_PRODUCT",payload:e})} data-toggle="modal" data-target="#myModal">
                                                                     Edit
-                                                                </a>
+                                                                </button>
                                                             </td>
                                                         </tr>
                                                     );
@@ -110,7 +109,7 @@ function ListProduct(props) {
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <CreateProduct />
+                                    <CreateProduct/>
                                 </div>
                             </div>
                         </div>

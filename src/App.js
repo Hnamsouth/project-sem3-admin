@@ -17,6 +17,7 @@ import NotFound from './Page/NotFound';
 import CreateProductColor from './Page/product/create-product-color';
 import ListProductColor from './Page/product/list-product-color';
 import ListProductSize from './Page/product/list-product-size';
+import DBTable from './Page/product/db-table';
 
 const prepareRouter = (path,element,child)=>{
   return {
@@ -35,6 +36,8 @@ const router= createBrowserRouter([
   prepareRouter("/list-product-color/:pId",<ListProductColor/>),
   prepareRouter("/create-product-color/:pId",<CreateProductColor/>),
   prepareRouter("/list-product-size/:pclId",<ListProductSize/>),
+
+  prepareRouter("/db-table",<DBTable/>),
 
   prepareRouter("/list-category",<ListCategory/>),
   { path:"/login", element:<LayoutAdmin main={<AdminLogin/>} auth={true}/>},

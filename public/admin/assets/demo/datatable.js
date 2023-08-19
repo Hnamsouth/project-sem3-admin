@@ -2,7 +2,8 @@
     $(document).ready(function () {
         $('#datatables').DataTable({
             "pagingType": "full_numbers",
-            "scrollX": true,
+            // "scrollX": true,
+            //scrollY: '200px',
             "lengthMenu": [
                 [10, 25, 50, -1],
                 [10, 25, 50, "All"]

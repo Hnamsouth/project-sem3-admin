@@ -11,6 +11,7 @@ import CreateProductColor from './create-product-color';
 function ListProductColor(props) {
     const {state,dispatch}=useContext(UserContext)
     const [prdColor,setprdColor] = useState([]);
+    const [edit,setEdit]=useState({});
     const {pId} = useParams();
 
     const getProductColor = async ()=>{
@@ -95,7 +96,7 @@ function ListProductColor(props) {
                                                                     Add Size
                                                                 </Link>
                                                                 <a href="#" class="btn btn-warning">
-                                                                    Edit
+                                                                    <button type='button' onClick={()=>setEdit(e)}>Edit</button>
                                                                 </a>
                                                             </td>
                                                         </tr>
@@ -124,7 +125,7 @@ function ListProductColor(props) {
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <CreateProductColor />
+                                    <CreateProductColor edit={edit}/>
                                 </div>
                             </div>
                         </div>

@@ -12,6 +12,8 @@ function ListProductSize(props) {
     const [prdSize,setprdSize] = useState([]);
     const {pclId} = useParams();
 
+    const [edit,setEdit]=useState({});
+
     const getProductColor = async ()=>{
         dispatch({type:"SHOW_LOADING"})
         let rs = await getPrdSize(pclId);

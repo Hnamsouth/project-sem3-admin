@@ -16,7 +16,6 @@ import { useParams } from 'react-router-dom';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import { create_pColor } from '../../Service/products.service';
-import { center } from '@cloudinary/url-gen/qualifiers/textAlignment';
 
 const animatedComponents = makeAnimated();
 const options = [
