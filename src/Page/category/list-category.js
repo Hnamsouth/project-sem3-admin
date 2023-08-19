@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import UserContext from "../../context/userContext";
-import {create, get} from "../../Service/categories.service";
+import {create, getCtgr} from "../../Service/categories.service";
 import {Helmet} from "react-helmet";
 
 function ListCategory(props) {
@@ -32,7 +32,7 @@ function ListCategory(props) {
 
     const list = async () => {
         dispatch({type: "SHOW_LOADING"});
-        const categories = await get();
+        const categories = await getCtgr();
         setCategories(categories);
 
         dispatch({type: "HIDE_LOADING"});
