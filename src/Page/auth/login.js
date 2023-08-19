@@ -39,7 +39,6 @@ const AdminLogin =()=>{
     return (
         <form class="form" method="post" onSubmit={handleSubmit(submit)}>
         <Helmet>
-            
         </Helmet>
             <div class="card card-login card-hidden">
             <div class="card-header card-header-rose text-center">

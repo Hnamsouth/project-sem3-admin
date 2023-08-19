@@ -1,23 +1,25 @@
 import React, { useState,useEffect,useContext } from 'react';
 import {Link} from "react-router-dom";
 import {Helmet, HelmetProvider} from 'react-helmet';
-import CreateProduct from './create-product';
-import { get } from '../../Service/products.service';
+import { getPrdSize } from '../../Service/products.service';
 import UserContext from '../../context/userContext';
 
+import { useParams } from 'react-router-dom';
+import CreateProductSize from './create-product-size';
 
-
-function ListProduct(props) {
+function ListProductSize(props) {
     const {state,dispatch}=useContext(UserContext)
-    const [products,setProduct] =useState([]);
+    const [prdSize,setprdSize] = useState([]);
+    const {pclId} = useParams();
 
-    const getProduct = async ()=>{
+    const getProductColor = async ()=>{
         dispatch({type:"SHOW_LOADING"})
-        let rs = await get();
-        dispatch({type:"UPDATE_PRODUCT",payload:rs})
+        let rs = await getPrdSize(pclId);
+        // console.log(rs)
+        setprdSize(rs);
     }
     useEffect(()=>{
-        getProduct();
+        getProductColor();
         dispatch({type:"HIDE_LOADING"})
     },[])
 
@@ -38,7 +40,7 @@ function ListProduct(props) {
                                     <i className="material-icons">assignment</i>
                                 </div>
                                 <button class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal">
-                                    Create Product
+                                    Create Product Size
                                 </button>
                             </div>
                             <div className="card-body">
@@ -50,35 +52,21 @@ function ListProduct(props) {
                                         <thead>
                                         <tr>
                                             <th>Id</th>
-                                            <th>Name</th>
-                                            <th>Price</th>
-                                            <th>Des</th>
-                                            <th>C-CD</th>
-                                            <th>Color</th>
-                                            <th>KSP</th>
-                                            <th>Status</th>
-                                            <th>Gender</th>
-                                            <th>Open</th>
+                                            <th>Size</th>
+                                            <th>Qty</th>
                                             <th className="disabled-sorting">Actions</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                            {state.products.length > 0 && state.products.map(e=>{
+                                            {prdSize.length > 0 && prdSize.map(e=>{
                                                     return (
                                                         <tr>
                                                             <td>{e.id}</td>
-                                                            <td>{e.name}</td>
-                                                            <td>{e.price.toFixed(2) + " $"}</td>
-                                                            <td>{e.description}</td>
-                                                            <td>{e.categoryDetail.category.name + ("/ "+e.categoryDetail.name)}</td>
-                                                            <td>{e.productColors.length}</td>
-                                                            <td>{e.kindofsport.name}</td>
-                                                            <td>{e.status?"Stop":!e.status?"Open":"Coming Soon"}</td>
-                                                            <td>{e.gender?"Female":"Male"}</td>
-                                                            <td>{new Date(e.openSale).toLocaleString()}</td>
+                                                            <td>{e.size.name}</td>
+                                                            <td>{e.qty}</td>
                                                             <td class="">
-                                                                <Link to={"/list-product-color/"+e.id} className='btn btn-info'>
-                                                                    Add Color
+                                                                <Link to={"/create-product-color/"+e.id} className='btn btn-info'>
+                                                                    Add Size
                                                                 </Link>
                                                                 <a href="#" class="btn btn-warning">
                                                                     Edit
@@ -110,7 +98,7 @@ function ListProduct(props) {
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <CreateProduct />
+                                    <CreateProductSize />
                                 </div>
                             </div>
                         </div>
@@ -121,4 +109,4 @@ function ListProduct(props) {
     );
 }
 
-export default ListProduct;
+export default ListProductSize;
