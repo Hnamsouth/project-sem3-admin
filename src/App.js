@@ -19,6 +19,9 @@ import NotFound from './Page/NotFound';
 import CreateProductColor from './Page/product/create-product-color';
 import ListProductColor from './Page/product/list-product-color';
 import ListProductSize from './Page/product/list-product-size';
+import ListAds from './Page/ads/list-ads';
+import ListCollection from './Page/ads/list-collection';
+
 
 const prepareRouter = (path,element,child)=>{
   return {
@@ -41,6 +44,9 @@ const router= createBrowserRouter([
   prepareRouter("/list-category",<ListCategory/>),
   prepareRouter("/size",<Size/>),
   prepareRouter("/kind-of-sport",<KindOfSport/>),
+
+  prepareRouter('/ad-campaign',<ListAds/>),
+  prepareRouter('/collection',<ListCollection/>),
   { path:"/login", element:<LayoutAdmin main={<AdminLogin/>} auth={true}/>},
   { path:"*",element:<LayoutAdmin main={<NotFound/>} auth={true}/>}
 ])

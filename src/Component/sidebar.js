@@ -128,6 +128,32 @@ const Sidebar = () => {
                     </div>
                 </li>
                 <li className="nav-item ">
+                    <a className="nav-link" data-toggle="collapse" href="#formsExamples2">
+                        <i className="material-icons">content_paste</i>
+                        <p> Advertisement
+                            <b className="caret"></b>
+                        </p>
+                    </a>
+                    <div className="collapse" id="formsExamples2">
+                        <ul className="nav">
+                            <li className="nav-item ">
+                                <Link className="nav-link" to={'/ad-campaign'}>
+                                    <span className="sidebar-mini"> L </span>
+                                    <span className="sidebar-normal"> List Advertisement </span>
+                                </Link>
+                            </li>
+                            <li className="nav-item ">
+                                <Link className="nav-link" to={'/collection'}>
+                                    <span className="sidebar-mini"> L </span>
+                                    <span className="sidebar-normal"> List Collection </span>
+                                </Link>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
+
+                <li className="nav-item ">
                     <a className="nav-link" href="widgets.html">
                         <i className="material-icons">widgets</i>
                         <p> Widgets </p>
