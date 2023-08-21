@@ -73,17 +73,38 @@ export const create_pSize = async (data)=>{
 
 export const update = async (data)=>{
     try {
-        const url=URL+"/update";
+        const url=URL;
         const rs= await api.put(url,data);
         return rs.data;
     } catch (error) {
         return false;
     }
 }
+
+export const updatePcl = async (data)=>{
+    try {
+        const url=URL+"-color";
+        const rs= await api.put(url,data);
+        return rs.data;
+    } catch (error) {
+        return false;
+    }
+}
+
 export const deleteC = async (id)=>{
     try {
         const url=URL+"/delete";
         const rs = await api.delete(url,{Id:id});
+        return rs.data;
+    } catch (error) {
+        return false;
+    }
+}
+
+export const deletePImg = async (data)=>{
+    try {
+        const url=URL+"-color/delete-img";
+        const rs = await api.delete(url,data);
         return rs.data;
     } catch (error) {
         return false;

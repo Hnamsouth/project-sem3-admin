@@ -44,7 +44,7 @@ function ListProductColor(props) {
                                 <div className="card-icon">
                                     <i className="material-icons">assignment</i>
                                 </div>
-                                <button class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal">
+                                <button class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal" onClick={()=>dispatch({type:"EDIT_PRODUCT",payload:null})}>
                                     Create Product Color
                                 </button>
                             </div>
@@ -92,12 +92,13 @@ function ListProductColor(props) {
                                                             <td>{e.name}</td>
                                                             <td>{e.productId}</td>
                                                             <td class="">
-                                                                <Link to={"/list-product-size/"+e.id} className='btn btn-info'>
+                                                                <Link to={"/list-product-size/"+e.id} className='btn btn-outline-info'>
                                                                     Add Size
                                                                 </Link>
-                                                                <a href="#" class="btn btn-warning">
-                                                                    <button type='button' onClick={()=>setEdit(e)}>Edit</button>
-                                                                </a>
+
+                                                                <button class="btn btn-outline-danger" data-toggle="modal" data-target="#myModal"  onClick={()=>dispatch({type:"EDIT_PRODUCT",payload:e})}>
+                                                                Edit
+                                                                </button>
                                                             </td>
                                                         </tr>
                                                     );

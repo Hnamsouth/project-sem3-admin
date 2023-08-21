@@ -36,7 +36,7 @@ function ListProduct(props) {
                                 <div className="card-icon">
                                     <i className="material-icons">assignment</i>
                                 </div>
-                                <button class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal" onClick={()=>dispatch({type:"EDIT_PRODUCT",payload:null})} >
+                                <button class="btn btn-outline-primary" data-toggle="modal" data-target="#CreateProduct" onClick={()=>dispatch({type:"EDIT_PRODUCT",payload:null})} >
                                     Create Product
                                 </button>
                             </div>
@@ -79,7 +79,7 @@ function ListProduct(props) {
                                                                 <Link to={"/list-product-color/"+e.id} className='btn btn-outline-info'>
                                                                     Add Color
                                                                 </Link>
-                                                                <button class="btn btn-outline-danger" onClick={()=>dispatch({type:"EDIT_PRODUCT",payload:e})} data-toggle="modal" data-target="#myModal">
+                                                                <button class="btn btn-outline-danger" onClick={()=>dispatch({type:"EDIT_PRODUCT",payload:e})} data-toggle="modal" data-target="#CreateProduct">
                                                                     Edit
                                                                 </button>
                                                             </td>
@@ -99,7 +99,7 @@ function ListProduct(props) {
                 </div>
                 {/* end row */}
             </div>
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal fade" id="CreateProduct" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lagre">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -115,8 +115,6 @@ function ListProduct(props) {
                         </div>
                 </div>
         </div>
-
-
     );
 }
 

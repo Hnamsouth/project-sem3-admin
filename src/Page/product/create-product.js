@@ -22,7 +22,6 @@ function CreateProduct() {
     const [prepData,setprepData]=useState({Categories:[],Kindofsport:[],gender:null})
     const [Description,setDescription]=useState()
 
-    console.log(state.EditProduct)
     const schema = yup.object({
         Name:yup.string().required().min(4).max(100,'quá số lượng'),
         Price:yup.number().required().min(0),
@@ -33,7 +32,7 @@ function CreateProduct() {
         KindofsportId:yup.number().required(),
     }).required();
 
-    const {register,setValue,handleSubmit,formState:{errors}}=useForm({
+    const {register,setValue,reset,resetField,handleSubmit,formState:{errors}}=useForm({
         resolver:yupResolver(schema),
     })
 
@@ -50,13 +49,7 @@ function CreateProduct() {
             setValue("CategoryDetailId",state.EditProduct.categoryDetail.id)
             setValue("KindofsportId",state.EditProduct.kindofsport.id)
         }else{
-            setValue("Name",'')
-            setValue("Price",'')
-            setValue("Gender",'')
-            setValue("OpenSale",'')
-            setValue("Status",'')
-            setValue("CategoryDetailId",'')
-            setValue("KindofsportId",0)
+            reset();
         }
     }
 
@@ -80,25 +73,32 @@ function CreateProduct() {
     const Submit =async (data)=>{
         dispatch({type:"SHOW_LOADING"});
         data['Description']=Description;
+        let arr=[];
         console.log(data)
         if(state.EditProduct!=null){
             data['Id']=state.EditProduct.id;
             const rs= await update(data)
+            let listp= state.products.map(e=>{
+                return rs.id==e.id?rs:e;
+            })
+            dispatch({type:"UPDATE_PRODUCT",payload:listp})
         }else{
             const rs = await create(data);
             state.products.push(rs)
-            // dispatch({type:"UPDATE_PRODUCT",payload:rs})
+            
         }
         dispatch({type:"HIDE_LOADING"});
     }
 
     useEffect(()=>{
+        console.log("create")
         GetData();
     },[])
 
     useEffect(()=>{
+        console.log("edit")
         prepEdit();
-    })
+    },[state.EditProduct])
     return (
         <div >
         <Helmet>
@@ -130,17 +130,21 @@ function CreateProduct() {
                                     </div>
                                 </div>
                                 <div className="row mb-3">
-                                    <div className='col-sm-6'>
+                                    <div className='col-sm-6 checkbox-radios'>
                                         <div class="form-check">
-                                            <input class="" type="radio" {...register("Gender")} defaultValue={0} id="flexRadioDefault1" defaultChecked/>
-                                            <label class="form-check-label" for="flexRadioDefault1">
-                                                Male
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="radio" {...register("Gender")} value={0} checked/> Male
+                                                <span class="circle">
+                                                <span class="check"></span>
+                                                </span>
                                             </label>
                                             </div>
                                             <div class="form-check">
-                                            <input class="" type="radio" {...register("Gender")} defaultValue={1} id="flexRadioDefault2" />
-                                            <label class="form-check-label" for="flexRadioDefault2">
-                                                FeMale
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="radio" {...register("Gender")} value={1}/> Female
+                                                <span class="circle">
+                                                <span class="check"></span>
+                                                </span>
                                             </label>
                                         </div>
                                         <span className='text-danger'>{errors.Gender?.message}</span>
@@ -154,8 +158,8 @@ function CreateProduct() {
                                 </div>
                                 <div className="row  mb-3">
                                     <div className='col-sm-6'>
-                                            <select class="form-control"  {...register("KindofsportId")}  title="Choose KindofsportId">
-                                            <option selected>Kind of sport</option>
+                                            <select class="form-control"  {...register("KindofsportId")}  title="Choose Kind of sport">
+                                            <option >Choose Kind of sport</option>
                                                 {prepData['Kindofsport'].length>0 && prepData['Kindofsport'].map((e,i) =>{
                                                     return (<option value={e.id} >{e.name}</option>)
                                                 })}
@@ -166,7 +170,7 @@ function CreateProduct() {
                                     <div className='col-sm-6'>
                                     <div class="form-group">
                                                 <select   class='form-control'    {...register("Status")} title="Status">
-                                                    <option selected>Status</option>
+                                                <option >Status</option>
                                                     <option value={0}>Open</option>
                                                     <option value={1}>Stop</option>
                                                     <option value={2}>Coming Soon</option>
@@ -177,8 +181,8 @@ function CreateProduct() {
                                 </div>
                                 <div className="row  mb-5">
                                     <div className='col-sm-6'>
-                                        <select class='form-control' onChange={e=>Change(e.target.value)}  >
-                                            <option selected >Category</option>
+                                        <select class='form-control' onChange={e=>Change(e.target.value)} title='Choose Category' >
+                                            <option >Category</option>
                                             {prepData['Categories'].length>0 && prepData['Categories'].map(e=>{
                                                 return (<option value={e.id} selected={state.EditProduct && state.EditProduct.categoryDetail.categoryId==e.id}>{e.name}</option>)
                                             })}
@@ -187,7 +191,7 @@ function CreateProduct() {
                                     </div>
                                     <div className='col-sm-6'>
                                         <select  class='form-control' {...register("CategoryDetailId")} title='Category Detail' >
-                                        <option selected value="">Category Detail</option>
+                                        <option >Choose Category Detail</option>
                                             {CategoryDetail.length>0 && CategoryDetail.map(e=>{
                                                 return (<option value={e.id} >{e.name}</option>)
                                             })}
