@@ -13,31 +13,32 @@ import makeAnimated from 'react-select/animated';
 import { create_pSize, getPrdSize, getSize } from '../../Service/products.service';
 
 const animatedComponents = makeAnimated();
-const options = [];
 const types =[
     { value: true, label: 'String' },
     { value: false, label: 'Number' }
 ];
 
 
-function CreateProductSize() {
+function CreateProductSize({prdSize}) {
     const {state,dispatch}=useContext(UserContext)
     const [sizes,setSizes]=useState([]);
     const [sizeSelect,setsizeSelect]=useState([]);
+    const  [type,setType]=useState();
     const {pclId}=useParams();
 
     const [prdSizeCreate,setprdSizeCreate]=useState({qty:0,sizeId:0,productColorId:pclId})
     const schema = yup.object({
         Qty:yup.number().required().min(1),
     }).required();
-    const {register,handleSubmit,formState:{errors}}=useForm({
+    const {register,setValue,reset,handleSubmit,formState:{errors}}=useForm({
         resolver:yupResolver(schema)
     })
 
     const Submit =async (data)=>{
             dispatch({type:"SHOW_LOADING"});
             prdSizeCreate['qty']=data.Qty;
-            await create_pSize(prdSizeCreate);
+            const rs = await create_pSize(prdSizeCreate);
+            prdSize.push(rs);
             dispatch({type:"HIDE_LOADING"});
     }
 
@@ -55,11 +56,26 @@ function CreateProductSize() {
         setsizeSelect(data);
     }
     const handleSize =(e)=>{
+        // check size exist
         prdSizeCreate['sizeId']=e.value;
+    }
+    const prepEdit = ()=>{
+        if(state.EditProduct!=null){
+            setType(types[0].value==state.EditProduct.size.type?types[0]:types[1]);
+            console.log(type)
+            handleType(state.EditProduct.size.type)
+            setValue("Qty",state.EditProduct.qty)
+        }else{
+            reset();
+        }
     }
     useEffect(()=>{
         getData();
     },[])
+
+    useEffect(()=>{
+        prepEdit();
+    },[state.EditProduct])
 
     return (
         <div >
@@ -83,6 +99,7 @@ function CreateProductSize() {
                                             closeMenuOnSelect={true}
                                             components={animatedComponents}
                                             onChange={e=>handleType(e)}
+                                            defaultValue={type}
                                             options={types}
                                             placeholder="Select Type Size..."
                                             />

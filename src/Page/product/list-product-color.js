@@ -1,32 +1,31 @@
 import React, { useState,useEffect,useContext } from 'react';
 import {Link} from "react-router-dom";
-import {Helmet, HelmetProvider} from 'react-helmet';
-import CreateProduct from './create-product';
-import { get, getPrdColor } from '../../Service/products.service';
+import {Helmet} from 'react-helmet';
+import { getPrdColor } from '../../Service/products.service';
 import UserContext from '../../context/userContext';
 
 import { useParams } from 'react-router-dom';
 import CreateProductColor from './create-product-color';
 
-function ListProductColor(props) {
+function ListProductColor() {
     const {state,dispatch}=useContext(UserContext)
     const [prdColor,setprdColor] = useState([]);
-    const [edit,setEdit]=useState({});
     const {pId} = useParams();
 
     const getProductColor = async ()=>{
-        dispatch({type:"SHOW_LOADING"})
         let rs = await getPrdColor(pId);
         console.log(rs)
         setprdColor(rs);
-        //dispatch({type:"UPDATE_PRODUCT",payload:rs})
-
+        dispatch({type:"HIDE_LOADING"})
     }
     useEffect(()=>{
+        dispatch({type:"SHOW_LOADING"})
         getProductColor();
-        // console.log(state.products)
-        dispatch({type:"HIDE_LOADING"})
     },[])
+
+    useEffect(()=>{
+        console.log(prdColor)
+    },[prdColor])
 
     return (
         <div className="content">
@@ -60,11 +59,17 @@ function ListProductColor(props) {
                                             <th>Img</th>
                                             <th>Name</th>
                                             <th>Product</th>
+                                            <th>Size</th>
+                                            <th>Qty</th>
                                             <th className="disabled-sorting">Actions</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                             {prdColor.length > 0 && prdColor.map(e=>{
+                                                let qty = 0;
+                                                e.productSizes.forEach(a=>{
+                                                    qty+=a.qty       
+                                                            }) ;
                                                     return (
                                                         <tr>
                                                             <td>{e.id}</td>
@@ -91,6 +96,10 @@ function ListProductColor(props) {
                                                             </td>
                                                             <td>{e.name}</td>
                                                             <td>{e.productId}</td>
+                                                            <td>{!e.productSizes.length>0 ?0 : e.productSizes.map((v,index)=>{
+                                                                return (index!=0? (" / "+v.size.name):v.size.name)
+                                                            })}</td>
+                                                            <td>{qty}</td>
                                                             <td class="">
                                                                 <Link to={"/list-product-size/"+e.id} className='btn btn-outline-info'>
                                                                     Add Size
@@ -126,7 +135,7 @@ function ListProductColor(props) {
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <CreateProductColor edit={edit}/>
+                                    <CreateProductColor edit={setprdColor}/>
                                 </div>
                             </div>
                         </div>

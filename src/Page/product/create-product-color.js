@@ -1,4 +1,4 @@
-import React, { useState,useEffect, useContext } from 'react';
+import React, {useEffect, useContext, useState } from 'react';
 import * as yup from "yup";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {useForm} from "react-hook-form";
@@ -8,7 +8,7 @@ import './uploadfile.css'
 import UserContext from '../../context/userContext';
 
 import { Uploader } from "uploader";
-import { UploadDropzone,UploadButton  } from "react-uploader";
+import { UploadDropzone  } from "react-uploader";
 import { useParams } from 'react-router-dom';
 
 import { create_pColor, deletePImg, updatePcl } from '../../Service/products.service';
@@ -36,17 +36,7 @@ const uploaderOptions = {
         }
     }
 }
-const uploaderOptions2 = {
-    multi: false,
-    styles: {
-      colors: {
-        primary: "#377dff"
-      }
-    }
-  }
-
-
-function CreateProductColor() {
+function CreateProductColor({edit}) {
     const {state,dispatch}=useContext(UserContext)
     let FileUrl=[];
     const {pId} = useParams();
@@ -59,7 +49,7 @@ function CreateProductColor() {
         });
     }
     const handleName= (n)=>{
-       let Name="";
+        let Name="";
         n.map(e=>{return (Name+= Name===""?e.value:"/ "+e.value)})
         return Name;
     }
@@ -68,16 +58,12 @@ function CreateProductColor() {
         Name:yup.array().required(),
     }).required();
 
-    const {register,setValue,handleSubmit,formState:{errors}}=useForm({
+    const {register,setValue,reset,handleSubmit,formState:{errors}}=useForm({
         resolver:yupResolver(schema),
     })
 
-    const onClickImg =(e)=>{
-        console.log(e)
-    }
     const handleDelete = async (e)=>{
         if(window.confirm("Delete the item?")){
-            // console.log(e)
             dispatch({type:"SHOW_LOADING"})
             const rs = await deletePImg(e);
             if(rs.status){
@@ -93,12 +79,19 @@ function CreateProductColor() {
         }
 
     }
+    const prepEdit =  ()=>{
+        console.log(state.EditProduct)
+        if(state.EditProduct!=null){
+            let name = state.EditProduct.name;
+            setValue("Name",name.split(" ").join("").split("/"))
+        }else{
+            reset();
+        }
+    }
 
     useEffect(()=>{
-        console.log(state.EditProduct)
+        prepEdit();
     },[state.EditProduct])
-
-
 
     const Submit =async (data)=>{
         console.log(data)
@@ -108,9 +101,9 @@ function CreateProductColor() {
             console.log(rs)
         }else{
             const rs= await updatePcl({name:handleName(data.Name),productId:pId,img:FileUrl})
+            edit(rs);
         }
         dispatch({type:"HIDE_LOADING"});
-
     }
 
 
@@ -144,7 +137,7 @@ function CreateProductColor() {
                                     <div className='col-lg-6'>
                                     {state.EditProduct && (
                                         <div className='card card-product'>
-                                            <Carousel showArrows={true} onClickItem={c=>onClickImg(c)} className='cls-heigth' >
+                                            <Carousel showArrows={true} className='cls-heigth' >
                                             {state.EditProduct.productColorImages.map(e=>{
                                                 return (
                                                     <div>
@@ -173,10 +166,10 @@ function CreateProductColor() {
                                 <div className="row mb-3 justify-content-start">
                                     <div className='col-sm-6'>
                                         <select class="selectpicker" {...register("Name")} data-style="select-with-transition" multiple title="Choose Color" data-size="7">
-                                            <option value="red"> Paris</option>
-                                            <option value="black"> Paris2</option>
-                                            <option value="blue"> Paris3</option>
-                                            <option value="pink"> Paris4</option>
+                                            <option value={"Red"}> Red</option>
+                                            <option value={"Black"}> Black</option>
+                                            <option value={"Blue"}> Blue</option>
+                                            <option value={"Pink"}> Pink</option>
                                         </select>
                                         <span className="text-danger">{errors.Name?.message}</span>
                                     </div>

@@ -11,13 +11,14 @@ function ListProduct(props) {
     const {state,dispatch}=useContext(UserContext)
 
     const getProduct = async ()=>{
-        dispatch({type:"SHOW_LOADING"})
         let rs = await get();
+        console.log(rs[0].productColors[2].productColorImages[0])
         dispatch({type:"UPDATE_PRODUCT",payload:rs})
+        dispatch({type:"HIDE_LOADING"})
     }
     useEffect(()=>{
+        dispatch({type:"SHOW_LOADING"})
         getProduct();
-        dispatch({type:"HIDE_LOADING"})
     },[])
 
     return (
