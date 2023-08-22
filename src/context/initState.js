@@ -6,7 +6,8 @@ const STATE={
     loading:false,
     afterScript:[],
     userStyle:null,
-    products:[]
+    products:[],
+    EditProduct:null
 }
 
 export default STATE;

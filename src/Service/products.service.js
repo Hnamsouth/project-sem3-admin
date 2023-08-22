@@ -74,7 +74,7 @@ export const create_pSize = async (data)=>{
 export const update = async (data)=>{
     try {
         const url=URL+"/update";
-        const rs= await api.put(url,{Id:data.id,Name:data.name});
+        const rs= await api.put(url,data);
         return rs.data;
     } catch (error) {
         return false;
