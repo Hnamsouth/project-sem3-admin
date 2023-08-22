@@ -51,3 +51,25 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+.cls-heigth{
+  max-height: 341px;
+}
+
+.cls-heigth .slide{
+  height: 340px;
+}
+.cls-heigth .slide .btn-delete{
+  position: absolute;
+  padding: 12px 12px;
+  left: 28px;
+  top: 10px;
+  /* background-color: darkmagenta; */
+  opacity: 0;
+}
+.cls-heigth .slide:hover .btn-delete{
+  opacity: 1;
+}
+
+.cls-heigth .thumb{
+  height: 50px;
+}

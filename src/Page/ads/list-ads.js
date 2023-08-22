@@ -47,7 +47,7 @@ function ListAds (props){
     const submit = async (data) => {
         // data.preventDefault();
         dispatch({type: "SHOW_LOADING"});
-        data['Description']=Description;
+        data['Desciption']=Description;
         const rs = await create(data);
         console.log(rs);
         ads.push(rs)
