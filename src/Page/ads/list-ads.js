@@ -16,6 +16,8 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 function ListAds (props){
     const {state,dispatch}=useContext(UserContext)
     const [ads,setAds]=useState([]);
+    const [Description,setDescription]=useState();
+    const [EditAd,setEditAd]=useState();
 
     const [Partner,setPartner]=useState([])
     const [Collection,setCollection]=useState([])
@@ -32,7 +34,6 @@ function ListAds (props){
 
     const schema = yup.object({
         Name:yup.string().required().min(4,'Tối thiểu 4 ký tự').max(100,'Quá số lượng'),
-        Description:yup.string().nullable(),
         OpenDate:yup.string().required(),
         EndDate:yup.string().required(),
         PartnersId:yup.number().nullable(),
@@ -46,7 +47,9 @@ function ListAds (props){
     const submit = async (data) => {
         // data.preventDefault();
         dispatch({type: "SHOW_LOADING"});
+        data['Description']=Description;
         const rs = await create(data);
+        console.log(rs);
         ads.push(rs)
         dispatch({type: "HIDE_LOADING"});
     }
@@ -128,16 +131,13 @@ return (
                                 <div className='mb-3'>
                                     <CKEditor
                                             editor={ ClassicEditor }
-                                            // {...register("Description")} 
-                                            data="<p>Hello from CKEditor&nbsp;5!</p>"
+                                            data={(EditAd&&EditAd.description)??""}
                                             onReady={ editor => {
-                                                // You can store the "editor" and use when it is needed.
-                                                //console.log( 'Editor is ready to use!', editor );
+                                                console.log( 'Editor is ready to use!', editor );
                                             } }
                                             onChange={ ( event, editor ) => {
                                                 const data = editor.getData();
-                                                console.log(data)
-                                                console.log( { event, editor, data } );
+                                                setDescription(data)
                                             } }
                                     />
                                 </div>
