@@ -91,12 +91,13 @@ function CreateProduct() {
     }
 
     useEffect(()=>{
-        console.log("create")
         GetData();
+        return ()=>{
+            if(state.EditProduct!=null) dispatch({type:"EDIT_PRODUCT",payload:null});
+        }
     },[])
 
     useEffect(()=>{
-        console.log("edit")
         prepEdit();
     },[state.EditProduct])
     return (

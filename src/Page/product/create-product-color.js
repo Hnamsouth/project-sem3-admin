@@ -91,6 +91,10 @@ function CreateProductColor({edit}) {
 
     useEffect(()=>{
         prepEdit();
+
+        return ()=>{
+            if(state.EditProduct!=null) dispatch({type:"EDIT_PRODUCT",payload:null});
+        }
     },[state.EditProduct])
 
     const Submit =async (data)=>{

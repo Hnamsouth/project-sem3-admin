@@ -100,7 +100,7 @@ function ListProductSize(props) {
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <CreateProductSize prdSize={prdSize}/>
+                                    <CreateProductSize prdSize={prdSize} setprdSize={setprdSize}/>
                                 </div>
                             </div>
                         </div>

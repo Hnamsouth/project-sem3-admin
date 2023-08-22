@@ -90,6 +90,15 @@ export const updatePcl = async (data)=>{
         return false;
     }
 }
+export const updatePS = async (data)=>{
+    try {
+        const url=URL+"-size";
+        const rs= await api.put(url,data);
+        return rs.data;
+    } catch (error) {
+        return false;
+    }
+}
 
 export const deleteC = async (id)=>{
     try {

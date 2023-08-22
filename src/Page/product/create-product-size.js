@@ -10,7 +10,7 @@ import { useParams } from 'react-router-dom';
 
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
-import { create_pSize, getPrdSize, getSize } from '../../Service/products.service';
+import { create_pSize, getPrdSize, getSize, updatePS } from '../../Service/products.service';
 
 const animatedComponents = makeAnimated();
 const types =[
@@ -19,16 +19,16 @@ const types =[
 ];
 
 
-function CreateProductSize({prdSize}) {
+function CreateProductSize({prdSize,setprdSize}) {
     const {state,dispatch}=useContext(UserContext)
     const [sizes,setSizes]=useState([]);
     const [sizeSelect,setsizeSelect]=useState([]);
-    const  [type,setType]=useState();
     const {pclId}=useParams();
 
-    const [prdSizeCreate,setprdSizeCreate]=useState({qty:0,sizeId:0,productColorId:pclId})
     const schema = yup.object({
         Qty:yup.number().required().min(1),
+        Type:yup.string(),
+        sizeId:yup.number()
     }).required();
     const {register,setValue,reset,handleSubmit,formState:{errors}}=useForm({
         resolver:yupResolver(schema)
@@ -36,41 +36,55 @@ function CreateProductSize({prdSize}) {
 
     const Submit =async (data)=>{
             dispatch({type:"SHOW_LOADING"});
-            prdSizeCreate['qty']=data.Qty;
-            const rs = await create_pSize(prdSizeCreate);
-            prdSize.push(rs);
+            if(state.EditProduct==null){
+                let params={qty:data.Qty,sizeId:data.sizeId,productColorId:pclId}
+                const rs = await create_pSize(params);
+                prdSize.push(rs);
+            }else{
+                let params={id:state.EditProduct.id,qty:data.Qty,sizeId:data.sizeId,productColorId:parseInt(pclId)};
+                const rs = await updatePS(params);
+                if(rs!={}){
+                   let rs2 =  prdSize.map(e=>{
+                        return e.id==rs.id?rs:e
+                    })
+                    setprdSize(rs2)
+                }else{
+                    alert(rs)
+                }
+            }
+
             dispatch({type:"HIDE_LOADING"});
     }
-
     const getData = async ()=>{
         let rs = await getSize();
         setSizes(rs);
     }
-    const handleType = (e)=>{
+    const handleType =  (e)=>{
         let data=[];
-        sizes.forEach( v=>{
-            if(v.type===e.value){
-                data.push({value:v.id,label:v.name})
+        sizes.map( v =>{
+            if(e=="1" && v.type || e=="0" && !v.type){
+                data.push(v)
             }
+            return v;
         })
         setsizeSelect(data);
     }
-    const handleSize =(e)=>{
-        // check size exist
-        prdSizeCreate['sizeId']=e.value;
-    }
-    const prepEdit = ()=>{
+    const prepEdit =async ()=>{
+        console.log(state.EditProduct)
         if(state.EditProduct!=null){
-            setType(types[0].value==state.EditProduct.size.type?types[0]:types[1]);
-            console.log(type)
-            handleType(state.EditProduct.size.type)
-            setValue("Qty",state.EditProduct.qty)
+                handleType(state.EditProduct.size.type?1:0)
+                setValue("Qty",state.EditProduct.qty)
+                setValue("Type",state.EditProduct.size.type?1:0)
+                setValue("sizeId",state.EditProduct.size.id)
         }else{
             reset();
         }
     }
     useEffect(()=>{
         getData();
+        return ()=>{
+            if(state.EditProduct!=null) dispatch({type:"EDIT_PRODUCT",payload:null});
+        }
     },[])
 
     useEffect(()=>{
@@ -86,35 +100,34 @@ function CreateProductSize({prdSize}) {
             <div className="col-md-12">
                 <div className="card ">
                     <div className='' style={{paddingInline:25 +'px'}}>
-                        {/* <div className="card-header card-header-rose card-header-text">
-                            <div className="card-text">
-                                <h4 className="card-title">Form Create Product</h4>
-                            </div>
-                        </div> */}
                         <div className="card-body ">
                             <form method="post"  onSubmit={handleSubmit(Submit)} className="form-horizontal">
                                 <div className="row mb-3">
-                                    <div className="col-sm-6">
-                                        <Select
-                                            closeMenuOnSelect={true}
-                                            components={animatedComponents}
-                                            onChange={e=>handleType(e)}
-                                            defaultValue={type}
-                                            options={types}
-                                            placeholder="Select Type Size..."
-                                            />
+                                    <div className='col-sm-6'>
+                                        <div class="form-group">
+                                            <select class="form-control" {...register("Type")} onChange={e=>handleType(e.target.value)}  title="Choose Type" >
+                                                <option selected>Choose Type</option>
+                                                <option value={1}> String</option>
+                                                <option value={0}> Number</option>
+                                            </select>
+                                            <span className="text-danger">{errors.Name?.message}</span>
+                                        </div>
                                     </div>
-                                    <div className="col-sm-6">
-                                        <Select
-                                            closeMenuOnSelect={true}
-                                            components={animatedComponents}
-                                            onChange={e=>handleSize(e)}
-                                            options={sizeSelect}
-                                            placeholder="Select Size..."
-                                            />
+                                    <div className='col-sm-6'>
+                                        <div class="form-group">
+                                            <select class="form-control" {...register("sizeId")} title="Choose Color">
+                                            <option selected>Choose Color</option>
+                                                {sizeSelect.length>0 && sizeSelect.map(e=>{
+                                                    return (
+                                                        <option value={e.id}> {e.name}</option>
+                                                    );
+                                                })}
+                                            </select>
+                                            <span className="text-danger">{errors.sizeId?.message}</span>
+                                        </div>
                                     </div>
                                 </div>
-                                <div className='row mb-3'>
+                                <div className='row mt-5'>
                                     <div className='col-12'>
                                         <div className="form-group">
                                             <input type="number" className="form-control" {...register("Qty")} placeholder='Qty'/>
