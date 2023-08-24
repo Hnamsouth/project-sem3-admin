@@ -12,7 +12,6 @@ function ListProduct(props) {
 
     const getProduct = async ()=>{
         let rs = await get();
-        console.log(rs[0].productColors[2].productColorImages[0])
         dispatch({type:"UPDATE_PRODUCT",payload:rs})
         dispatch({type:"HIDE_LOADING"})
     }

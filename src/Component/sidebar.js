@@ -106,61 +106,43 @@ const Sidebar = () => {
                     </div>
                 </li>
                 <li className="nav-item ">
-                    <a className="nav-link" data-toggle="collapse" href="#tablesExamples">
-                        <i className="material-icons">grid_on</i>
-                        <p> Tables
+                    <a className="nav-link" data-toggle="collapse" href="#accounts">
+                        <i className="material-icons">person</i>
+                        <p> Account
                             <b className="caret"></b>
                         </p>
                     </a>
-                    <div className="collapse" id="tablesExamples">
+                    <div className="collapse" id="accounts">
                         <ul className="nav">
-                            <li className="nav-item ">
-                                <a className="nav-link" href="tables/regular.html">
-                                    <span className="sidebar-mini"> RT </span>
-                                    <span className="sidebar-normal"> Regular Tables </span>
-                                </a>
+                            <li className="nav-item">
+                                <Link to={"/user-list"} className="nav-link">
+                                    <span className="sidebar-mini"> G </span>
+                                    <span className="sidebar-normal"> Guest ACC </span>
+                                </Link>
                             </li>
                             <li className="nav-item ">
-                                <a className="nav-link" href="tables/extended.html">
-                                    <span className="sidebar-mini"> ET </span>
-                                    <span className="sidebar-normal"> Extended Tables </span>
-                                </a>
-                            </li>
-                            <li className="nav-item ">
-                                <a className="nav-link" href="tables/datatables.net.html">
-                                    <span className="sidebar-mini"> DT </span>
-                                    <span className="sidebar-normal"> DataTables.net </span>
-                                </a>
+                                <Link to={"/staff-list"} className="nav-link">
+                                    <span className="sidebar-mini"> ST </span>
+                                    <span className="sidebar-normal"> Staff ACC </span>
+                                </Link>
                             </li>
                         </ul>
                     </div>
                 </li>
                 <li className="nav-item ">
-                    <a className="nav-link" data-toggle="collapse" href="#mapsExamples">
-                        <i className="material-icons">place</i>
-                        <p> Maps
+                    <a className="nav-link" data-toggle="collapse" href="#orders">
+                        <i className="material-icons">list</i>
+                        <p> Orders
                             <b className="caret"></b>
                         </p>
                     </a>
-                    <div className="collapse" id="mapsExamples">
+                    <div className="collapse" id="orders">
                         <ul className="nav">
                             <li className="nav-item ">
-                                <a className="nav-link" href="maps/google.html">
-                                    <span className="sidebar-mini"> GM </span>
-                                    <span className="sidebar-normal"> Google Maps </span>
-                                </a>
-                            </li>
-                            <li className="nav-item ">
-                                <a className="nav-link" href="maps/fullscreen.html">
-                                    <span className="sidebar-mini"> FSM </span>
-                                    <span className="sidebar-normal"> Full Screen Map </span>
-                                </a>
-                            </li>
-                            <li className="nav-item ">
-                                <a className="nav-link" href="maps/vector.html">
-                                    <span className="sidebar-mini"> VM </span>
-                                    <span className="sidebar-normal"> Vector Map </span>
-                                </a>
+                                <Link to={"/staff-list"} className="nav-link">
+                                    <span className="sidebar-mini"> L </span>
+                                    <span className="sidebar-normal"> List </span>
+                                </Link>
                             </li>
                         </ul>
                     </div>

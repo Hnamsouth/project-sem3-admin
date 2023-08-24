@@ -26,9 +26,11 @@ function CreateProductSize({prdSize,setprdSize}) {
     const {pclId}=useParams();
 
     const schema = yup.object({
-        Qty:yup.number().required().min(1),
+        Qty:yup.number().typeError("Qty must be number").required().min(1),
         Type:yup.string(),
-        sizeId:yup.number()
+        sizeId:yup.number().typeError("size required").required().test('isSizeExisted',"Size Existed",(value)=>{
+            // check sizeId exists
+        })
     }).required();
     const {register,setValue,reset,handleSubmit,formState:{errors}}=useForm({
         resolver:yupResolver(schema)
