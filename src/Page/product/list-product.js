@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useState,useEffect,useContext } from 'react';
 import {Link} from "react-router-dom";
 import {Helmet, HelmetProvider} from 'react-helmet';
@@ -10,6 +9,7 @@ import UserContext from '../../context/userContext';
 
 function ListProduct(props) {
     const {state,dispatch}=useContext(UserContext)
+    const [prd,setPrd]=useState();
 
     const getProduct = async ()=>{
         let rs = await get();
@@ -20,37 +20,6 @@ function ListProduct(props) {
         dispatch({type:"SHOW_LOADING"})
         getProduct();
     },[])
-=======
-import React, {useContext, useEffect, useState} from 'react';
-import {Link} from "react-router-dom";
-import {Helmet, HelmetProvider} from 'react-helmet';
-import {get} from "../../Service/products.service.js";
-import UserContext from "../../context/userContext";
-import * as yup from "yup";
-import {useForm} from "react-hook-form";
-import {yupResolver} from "@hookform/resolvers/yup";
-
-
-function ListProduct(props) {
-    const {state, dispatch} = useContext(UserContext)
-
-    const [products,setProducts]=useState([]);
-
-
-
-    const list = async () => {
-        dispatch({type: "SHOW_LOADING"});
-        const products = await get();
-        setProducts(products);
-        console.log(products)
-
-        dispatch({type: "HIDE_LOADING"});
-    }
-    useEffect(() => {
-        list()
-    }, [])
-
->>>>>>> hienndth
 
     return (
         <div className="content">
@@ -68,7 +37,7 @@ function ListProduct(props) {
                                 <div className="card-icon">
                                     <i className="material-icons">assignment</i>
                                 </div>
-                                <button class="btn btn-outline-primary" data-toggle="modal" data-target="#CreateProduct" onClick={()=>dispatch({type:"EDIT_PRODUCT",payload:null})} >
+                                <button class="btn btn-outline-primary" data-toggle="modal" data-target="#CreateProduct" onClick={()=>setPrd()} >
                                     Create Product
                                 </button>
                             </div>
@@ -83,7 +52,6 @@ function ListProduct(props) {
                                             <th>Id</th>
                                             <th>Name</th>
                                             <th>Price</th>
-<<<<<<< HEAD
                                             <th>Des</th>
                                             <th>C-CD</th>
                                             <th>Color</th>
@@ -92,6 +60,7 @@ function ListProduct(props) {
                                             <th>Gender</th>
                                             <th>Open</th>
                                             <th className="disabled-sorting">Actions</th>
+                                            <th>Rating</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -105,76 +74,30 @@ function ListProduct(props) {
                                                             <td>{e.categoryDetail.category.name + ("/ "+e.categoryDetail.name)}</td>
                                                             <td>{e.productColors.length}</td>
                                                             <td>{e.kindofsport.name}</td>
-                                                            <td>{e.status===1?"Stop":e.status===0?"Open":"Coming Soon"}</td>
+                                                            <td>
+                                                                <span className={e.status===1?"text-danger":e.status===0?"text-success":"text-info"}>
+                                                                    <strong>
+                                                                    {e.status===1?"Inactive":e.status===0?"Published":"Scheduled"}  
+                                                                    </strong>
+                                                                </span>
+                                                            </td>
                                                             <td>{e.gender?"Female":"Male"}</td>
                                                             <td>{new Date(e.openSale).toLocaleString()}</td>
                                                             <td class="">
                                                                 <Link to={"/list-product-color/"+e.id} className='btn btn-outline-info'>
                                                                     Add Color
                                                                 </Link>
-                                                                <button class="btn btn-outline-danger" onClick={()=>dispatch({type:"EDIT_PRODUCT",payload:e})} data-toggle="modal" data-target="#CreateProduct">
+                                                                <button class="btn btn-outline-danger" onClick={()=>setPrd(e)} data-toggle="modal" data-target="#CreateProduct">
                                                                     Edit
                                                                 </button>
+                                                            </td>
+                                                            <td>
+                                                                1
                                                             </td>
                                                         </tr>
                                                     );
                                                 })
                                             }
-=======
-                                            <th>Description</th>
-                                            <th>Category</th>
-                                            <th>Color</th>
-                                            <th>Img</th>
-                                            <th>Status</th>
-                                            <th className="disabled-sorting text-right">Actions</th>
-                                        </tr>
-                                        </thead>
-                                        <tfoot>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Price</th>
-                                            <th>Description</th>
-                                            <th>Category</th>
-                                            <th>Color</th>
-                                            <th>Img</th>
-                                            <th>Status</th>
-                                            <th className="text-right">Actions</th>
-                                        </tr>
-                                        </tfoot>
-                                        <tbody>
-                                        {
-                                            products.map((e, i) => {
-                                                return (
-
-                                                    <tr key={i}>
-                                                        <td>{e.name}</td>
-                                                        <td>{e.price}</td>
-                                                        <td>{e.description}</td>
-                                                        <td>{e.categoryId}</td>
-                                                        <td>{e.colorName}</td>
-                                                        <td>{e.Gender}</td>
-                                                        <td>{e.Img}</td>
-                                                        <td>{e.OpenSale}</td>
-                                                        <td>{e.Status}</td>
-                                                        <td>{e.category_detail_id}</td>
-                                                        <td>{e.kindofsport_id}</td>
-                                                        <td className="text-right">
-                                                            <a href="#"
-                                                               className="btn btn-link btn-info btn-just-icon like"><i
-                                                                className="material-icons">favorite</i></a>
-                                                            <a href="#"
-                                                               className="btn btn-link btn-warning btn-just-icon edit"><i
-                                                                className="material-icons">dvr</i></a>
-                                                            <a href="#"
-                                                               className="btn btn-link btn-danger btn-just-icon remove"><i
-                                                                className="material-icons">close</i></a>
-                                                        </td>
-                                                    </tr>
-                                                );
-                                            })
-                                        }
-
->>>>>>> hienndth
                                         </tbody>
                                     </table>
                                 </div>
@@ -197,7 +120,7 @@ function ListProduct(props) {
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <CreateProduct/>
+                                    <CreateProduct edit={prd} setEdit={setPrd}/>
                                 </div>
                             </div>
                         </div>

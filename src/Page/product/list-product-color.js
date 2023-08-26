@@ -10,11 +10,11 @@ import CreateProductColor from './create-product-color';
 function ListProductColor() {
     const {state,dispatch}=useContext(UserContext)
     const [prdColor,setprdColor] = useState([]);
+    const [pclEdit,setpclEdit]=useState();
     const {pId} = useParams();
 
     const getProductColor = async ()=>{
         let rs = await getPrdColor(pId);
-        console.log(rs)
         setprdColor(rs);
         dispatch({type:"HIDE_LOADING"})
     }
@@ -43,7 +43,7 @@ function ListProductColor() {
                                 <div className="card-icon">
                                     <i className="material-icons">assignment</i>
                                 </div>
-                                <button class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal" onClick={()=>dispatch({type:"EDIT_PRODUCT",payload:null})}>
+                                <button class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal" onClick={()=>setpclEdit()}>
                                     Create Product Color
                                 </button>
                             </div>
@@ -105,7 +105,7 @@ function ListProductColor() {
                                                                     Add Size
                                                                 </Link>
 
-                                                                <button class="btn btn-outline-danger" data-toggle="modal" data-target="#myModal"  onClick={()=>dispatch({type:"EDIT_PRODUCT",payload:e})}>
+                                                                <button class="btn btn-outline-danger" data-toggle="modal" data-target="#myModal"  onClick={()=>setpclEdit(e)}>
                                                                 Edit
                                                                 </button>
                                                             </td>
@@ -135,7 +135,7 @@ function ListProductColor() {
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <CreateProductColor edit={setprdColor}/>
+                                    <CreateProductColor setPrdColor={setprdColor} prdColor={prdColor} edit={pclEdit}/>
                                 </div>
                             </div>
                         </div>

@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import UserContext from "../../context/userContext";
 
 import {createCategoryDetails, getCategoryDetails} from "../../Service/categoryDetails.service.js";
-import {get} from "../../Service/categories.service.js"
+import {getCtgr} from "../../Service/categories.service.js"
 import {Helmet} from "react-helmet";
 import Select from "react-select";
 import {forEach} from "react-bootstrap/ElementChildren";
@@ -49,7 +49,7 @@ function CategoryDetails(props) {
 
     const list = async () => {
         dispatch({type: "SHOW_LOADING"});
-        const categories = await get();
+        const categories = await getCtgr();
         setCategories(categories);
 
         dispatch({type: "HIDE_LOADING"});
@@ -159,7 +159,7 @@ function CategoryDetails(props) {
                                             </tfoot>
                                             <tbody>
                                             {
-                                                categoryDetailsList.map((e, i) => {
+                                                categoryDetailsList.length>0 &&  categoryDetailsList.map((e, i) => {
                                                     return (
 
                                                         <tr key={i}>

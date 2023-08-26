@@ -12,18 +12,21 @@ function ListProductSize(props) {
     const [prdSize,setprdSize] = useState([]);
     const {pclId} = useParams();
 
-    const [edit,setEdit]=useState({});
+    const [edit,setEdit]=useState();
 
     const getProductColor = async ()=>{
         dispatch({type:"SHOW_LOADING"})
         let rs = await getPrdSize(pclId);
-        // console.log(rs)
         setprdSize(rs);
     }
     useEffect(()=>{
         getProductColor();
         dispatch({type:"HIDE_LOADING"})
     },[])
+
+    useEffect(()=>{
+
+    },[prdSize])
 
     return (
         <div className="content">
@@ -41,7 +44,7 @@ function ListProductSize(props) {
                                 <div className="card-icon">
                                     <i className="material-icons">assignment</i>
                                 </div>
-                                <button class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal" onClick={()=>dispatch({type:"EDIT_PRODUCT",payload:null})}>
+                                <button class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal" onClick={()=>setEdit()}>
                                     Create Product Size
                                 </button>
                             </div>
@@ -70,7 +73,7 @@ function ListProductSize(props) {
                                                                 <Link to={"/create-product-color/"+e.id} className='btn btn-info'>
                                                                     Add Size
                                                                 </Link>
-                                                                <button class="btn btn-outline-danger" onClick={()=>dispatch({type:"EDIT_PRODUCT",payload:e})} data-toggle="modal" data-target="#myModal">
+                                                                <button class="btn btn-outline-danger" onClick={()=>setEdit(e)} data-toggle="modal" data-target="#myModal">
                                                                     Edit
                                                                 </button>
                                                             </td>
@@ -100,7 +103,7 @@ function ListProductSize(props) {
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <CreateProductSize prdSize={prdSize} setprdSize={setprdSize}/>
+                                    <CreateProductSize prdSize={prdSize} setprdSize={setprdSize} edit={edit}/>
                                 </div>
                             </div>
                         </div>

@@ -1,6 +1,6 @@
 import api from "./api";
 
-const URL = "CategoryDetail";
+const URL = "category-detail";
 export const getCategoryDetails = async (id=null)=>{
 
     try {

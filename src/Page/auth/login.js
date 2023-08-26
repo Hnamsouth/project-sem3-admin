@@ -30,26 +30,16 @@ const AdminLogin =()=>{
         console.log(rs)
         if(!rs.token) return alert("Tài khoản hoặc mật khẩu không đúng");
         state.token=rs.token;
-<<<<<<< HEAD
         localStorage.setItem("token",rs.token)
         api.defaults.headers.common["Authorization"] = `Bearer ${rs.token}`;
         navigate("/")
-=======
-        // nếu bạn thiết lập tiêu đề "common" một lần, tiêu đề đó sẽ tự động được gửi cùng với mọi yêu cầu bạn thực hiện bằng Axios sau đó.
-        api.defaults.headers.common["Authorization"] = `Bearer ${user.token}`;
-        navigate("/dashboard")
->>>>>>> hienndth
     }
 
 
     return (
-<<<<<<< HEAD
         <form class="form" method="post" onSubmit={handleSubmit(submit)}>
         <Helmet>
         </Helmet>
-=======
-        <form class="form" method="post" onSubmit={submit}>
->>>>>>> hienndth
             <div class="card card-login card-hidden">
             <div class="card-header card-header-rose text-center">
                 <h4 class="card-title">Login</h4>

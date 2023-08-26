@@ -36,7 +36,7 @@ const uploaderOptions = {
         }
     }
 }
-function CreateProductColor({edit}) {
+function CreateProductColor({setPrdColor,prdColor,edit}) {
     const {state,dispatch}=useContext(UserContext)
     let FileUrl=[];
     const {pId} = useParams();
@@ -50,10 +50,9 @@ function CreateProductColor({edit}) {
     }
     const handleName= (n)=>{
         let Name="";
-        n.map(e=>{return (Name+= Name===""?e.value:"/ "+e.value)})
+        n.forEach(e=>{ (Name+= Name===""?e:"/ "+e)})
         return Name;
     }
-
     const schema = yup.object({
         Name:yup.array().required(),
     }).required();
@@ -67,9 +66,9 @@ function CreateProductColor({edit}) {
             dispatch({type:"SHOW_LOADING"})
             const rs = await deletePImg(e);
             if(rs.status){
-                state.EditProduct.productColorImages.forEach((vl2,index)=>{
+                edit.productColorImages.forEach((vl2,index)=>{
                     if(vl2.id==e.id){
-                        state.EditProduct.productColorImages.splice(index,1);
+                        edit.productColorImages.splice(index,1);
                     }
                 })
             }else{
@@ -80,9 +79,8 @@ function CreateProductColor({edit}) {
 
     }
     const prepEdit =  ()=>{
-        console.log(state.EditProduct)
-        if(state.EditProduct!=null){
-            let name = state.EditProduct.name;
+        if(edit!=null){
+            let name = edit.name;
             setValue("Name",name.split(" ").join("").split("/"))
         }else{
             reset();
@@ -91,21 +89,19 @@ function CreateProductColor({edit}) {
 
     useEffect(()=>{
         prepEdit();
-
-        return ()=>{
-            if(state.EditProduct!=null) dispatch({type:"EDIT_PRODUCT",payload:null});
-        }
-    },[state.EditProduct])
+    },[edit])
 
     const Submit =async (data)=>{
-        console.log(data)
         dispatch({type:"SHOW_LOADING"});
-        if(state.EditProduct==null){
+        if(edit==null){
             const rs = await create_pColor({name:handleName(data.Name),productId:pId,img:FileUrl});
-            console.log(rs)
+            prdColor.push(rs);
         }else{
-            const rs= await updatePcl({name:handleName(data.Name),productId:pId,img:FileUrl})
-            edit(rs);
+            const rs= await updatePcl({id:edit.id,name:handleName(data.Name),productId:pId,img:FileUrl})
+            let dt = prdColor.map(e=>{
+                return e.id==edit.id?rs:e;
+            })
+            setPrdColor(dt);
         }
         dispatch({type:"HIDE_LOADING"});
     }
@@ -139,10 +135,10 @@ function CreateProductColor({edit}) {
                                         />
                                     </div>
                                     <div className='col-lg-6'>
-                                    {state.EditProduct && (
+                                    {edit && (
                                         <div className='card card-product'>
                                             <Carousel showArrows={true} className='cls-heigth' >
-                                            {state.EditProduct.productColorImages.map(e=>{
+                                            {edit.productColorImages.map(e=>{
                                                 return (
                                                     <div>
                                                         <img src={e.url}/>
@@ -152,15 +148,6 @@ function CreateProductColor({edit}) {
                                                     </div>
                                                 );
                                             })}
-                                                <div>
-                                                    <img src="http://react-responsive-carousel.js.org/assets/1.jpeg" />
-                                                </div>
-                                                <div>
-                                                    <img src="http://react-responsive-carousel.js.org/assets/2.jpeg" />
-                                                </div>
-                                                <div>
-                                                    <img src="http://react-responsive-carousel.js.org/assets/2.jpeg" />
-                                                </div>
                                             </Carousel>
                                         </div>
                                     )}

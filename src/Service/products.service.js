@@ -113,7 +113,7 @@ export const deleteC = async (id)=>{
 export const deletePImg = async (data)=>{
     try {
         const url=URL+"-color/delete-img";
-        const rs = await api.delete(url,data);
+        const rs = await api.post(url,data);
         return rs.data;
     } catch (error) {
         return false;

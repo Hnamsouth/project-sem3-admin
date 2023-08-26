@@ -10,7 +10,7 @@ import { useParams } from 'react-router-dom';
 
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
-import { create_pSize, getPrdSize, getSize, updatePS } from '../../Service/products.service';
+import { create_pSize, getSize, updatePS } from '../../Service/products.service';
 
 const animatedComponents = makeAnimated();
 const types =[
@@ -19,7 +19,7 @@ const types =[
 ];
 
 
-function CreateProductSize({prdSize,setprdSize}) {
+function CreateProductSize({prdSize,setprdSize,edit}) {
     const {state,dispatch}=useContext(UserContext)
     const [sizes,setSizes]=useState([]);
     const [sizeSelect,setsizeSelect]=useState([]);
@@ -38,12 +38,12 @@ function CreateProductSize({prdSize,setprdSize}) {
 
     const Submit =async (data)=>{
             dispatch({type:"SHOW_LOADING"});
-            if(state.EditProduct==null){
+            if(edit==null){
                 let params={qty:data.Qty,sizeId:data.sizeId,productColorId:pclId}
                 const rs = await create_pSize(params);
                 prdSize.push(rs);
             }else{
-                let params={id:state.EditProduct.id,qty:data.Qty,sizeId:data.sizeId,productColorId:parseInt(pclId)};
+                let params={id:edit.id,qty:data.Qty,sizeId:data.sizeId,productColorId:parseInt(pclId)};
                 const rs = await updatePS(params);
                 if(rs!={}){
                    let rs2 =  prdSize.map(e=>{
@@ -72,26 +72,26 @@ function CreateProductSize({prdSize,setprdSize}) {
         setsizeSelect(data);
     }
     const prepEdit =async ()=>{
-        console.log(state.EditProduct)
-        if(state.EditProduct!=null){
-                handleType(state.EditProduct.size.type?1:0)
-                setValue("Qty",state.EditProduct.qty)
-                setValue("Type",state.EditProduct.size.type?1:0)
-                setValue("sizeId",state.EditProduct.size.id)
+        dispatch({type:"SHOW_LOADING"});
+        if(edit!=null){
+                handleType(edit.size.type?1:0)
+                setTimeout(()=>{
+                    setValue("Qty",edit.qty)
+                    setValue("Type",edit.size.type?1:0)
+                    setValue("sizeId",edit.size.id)
+                },1000)
         }else{
             reset();
         }
+        dispatch({type:"HIDE_LOADING"});
     }
     useEffect(()=>{
         getData();
-        return ()=>{
-            if(state.EditProduct!=null) dispatch({type:"EDIT_PRODUCT",payload:null});
-        }
     },[])
 
     useEffect(()=>{
         prepEdit();
-    },[state.EditProduct])
+    },[edit])
 
     return (
         <div >
