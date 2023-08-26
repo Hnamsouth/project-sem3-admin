@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState,useEffect,useContext } from 'react';
 import {Link} from "react-router-dom";
 import {Helmet, HelmetProvider} from 'react-helmet';
@@ -19,6 +20,37 @@ function ListProduct(props) {
         dispatch({type:"SHOW_LOADING"})
         getProduct();
     },[])
+=======
+import React, {useContext, useEffect, useState} from 'react';
+import {Link} from "react-router-dom";
+import {Helmet, HelmetProvider} from 'react-helmet';
+import {get} from "../../Service/products.service.js";
+import UserContext from "../../context/userContext";
+import * as yup from "yup";
+import {useForm} from "react-hook-form";
+import {yupResolver} from "@hookform/resolvers/yup";
+
+
+function ListProduct(props) {
+    const {state, dispatch} = useContext(UserContext)
+
+    const [products,setProducts]=useState([]);
+
+
+
+    const list = async () => {
+        dispatch({type: "SHOW_LOADING"});
+        const products = await get();
+        setProducts(products);
+        console.log(products)
+
+        dispatch({type: "HIDE_LOADING"});
+    }
+    useEffect(() => {
+        list()
+    }, [])
+
+>>>>>>> hienndth
 
     return (
         <div className="content">
@@ -51,6 +83,7 @@ function ListProduct(props) {
                                             <th>Id</th>
                                             <th>Name</th>
                                             <th>Price</th>
+<<<<<<< HEAD
                                             <th>Des</th>
                                             <th>C-CD</th>
                                             <th>Color</th>
@@ -87,6 +120,61 @@ function ListProduct(props) {
                                                     );
                                                 })
                                             }
+=======
+                                            <th>Description</th>
+                                            <th>Category</th>
+                                            <th>Color</th>
+                                            <th>Img</th>
+                                            <th>Status</th>
+                                            <th className="disabled-sorting text-right">Actions</th>
+                                        </tr>
+                                        </thead>
+                                        <tfoot>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Price</th>
+                                            <th>Description</th>
+                                            <th>Category</th>
+                                            <th>Color</th>
+                                            <th>Img</th>
+                                            <th>Status</th>
+                                            <th className="text-right">Actions</th>
+                                        </tr>
+                                        </tfoot>
+                                        <tbody>
+                                        {
+                                            products.map((e, i) => {
+                                                return (
+
+                                                    <tr key={i}>
+                                                        <td>{e.name}</td>
+                                                        <td>{e.price}</td>
+                                                        <td>{e.description}</td>
+                                                        <td>{e.categoryId}</td>
+                                                        <td>{e.colorName}</td>
+                                                        <td>{e.Gender}</td>
+                                                        <td>{e.Img}</td>
+                                                        <td>{e.OpenSale}</td>
+                                                        <td>{e.Status}</td>
+                                                        <td>{e.category_detail_id}</td>
+                                                        <td>{e.kindofsport_id}</td>
+                                                        <td className="text-right">
+                                                            <a href="#"
+                                                               className="btn btn-link btn-info btn-just-icon like"><i
+                                                                className="material-icons">favorite</i></a>
+                                                            <a href="#"
+                                                               className="btn btn-link btn-warning btn-just-icon edit"><i
+                                                                className="material-icons">dvr</i></a>
+                                                            <a href="#"
+                                                               className="btn btn-link btn-danger btn-just-icon remove"><i
+                                                                className="material-icons">close</i></a>
+                                                        </td>
+                                                    </tr>
+                                                );
+                                            })
+                                        }
+
+>>>>>>> hienndth
                                         </tbody>
                                     </table>
                                 </div>

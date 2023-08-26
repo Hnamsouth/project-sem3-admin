@@ -5,7 +5,7 @@ import * as yup from "yup"
 const FormEXP= ()=>{
 // prepare schema for validate
 const schema = yup.object({
-    Name:yup.string().required().min(4).max(10),
+    Name:yup.string().required().min(4).max(10,'quá số lượng'),
     Age:yup.number().required().integer().positive().max(99),
     Email:yup.string().required().email("Not a Email")
 }).required();

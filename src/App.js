@@ -11,6 +11,7 @@ import ListProduct from "./Page/product/list-product";
 import CreateProduct from "./Page/product/create-product";
 import ListCategory from "./Page/category/list-category";
 import Loading from "./Component/loading";
+<<<<<<< HEAD
 import NotFound from './Page/NotFound';
 import CreateProductColor from './Page/product/create-product-color';
 import ListProductColor from './Page/product/list-product-color';
@@ -19,6 +20,13 @@ import DBTable from './Page/product/db-table';
 import UserList from './Page/account/users';
 import StaffList from './Page/account/staffs';
 import { prepareRouter } from './route/route';
+=======
+import FormEXP from "./Page/form/FormEx";
+import CategoryDetails from "./Page/category/category-details";
+import KindOfSport from "./Page/kindOfSport/kind-of-sport";
+import Size from "./Page/size/size";
+import Profile from "./Page/auth/profile";
+>>>>>>> hienndth
 
 
 const router= createBrowserRouter([
@@ -40,7 +48,27 @@ function App() {
   return (
     <UserProvider value={{state,dispatch}}>
       <Loading display={state.loading}/>
+<<<<<<< HEAD
       <RouterProvider router={router}/> 
+=======
+
+      <BrowserRouter>
+        <Routes>
+          <Route  path="/dashboard"  id='asd'  element={iAdmin(<AdminDashboard/>,false)}/>
+          {/*<Route  path="/dashboard-" element={iAdmin(null,false)}/>*/}
+          <Route  path="/profile" element={iAdmin(<Profile/>,false)}/>
+          <Route  path="/list-product" element={iAdmin(<ListProduct/>,false)}/>
+          <Route  path="/create-product"  element={iAdmin(<CreateProduct/>,false)}/>
+          <Route  path="/list-category"  element={iAdmin(<ListCategory/>,false)}/>
+          <Route  path="/list-category-details"  element={iAdmin(<CategoryDetails/>,false)}/>
+          <Route  path="/kind-of-sport"  element={iAdmin(<KindOfSport/>,false)}/>
+          <Route  path="/size"  element={iAdmin(<Size/>,false)}/>
+          <Route  path="/" exact  element={iAdmin(<AdminLogin/>,true)}/>
+          <Route  path="/form-ex"  element={iAdmin(<FormEXP/>,true)}/>
+          <Route  path='*' element={<div>Page Not FOUND - south</div>}/>
+        </Routes>
+      </BrowserRouter>
+>>>>>>> hienndth
     </UserProvider>
   );
 }
