@@ -22,6 +22,8 @@ import ListProductSize from './Page/product/list-product-size';
 import DBTable from './Page/product/db-table';
 import ListAds from './Page/ads/list-ads';
 import ListCollection from './Page/ads/list-collection';
+import ListPartner from './Page/partner/list-partner';
+import PartnerProfile from './Page/partner/partner-info';
 
 
 const prepareRouter = (path,element,child)=>{
@@ -50,6 +52,9 @@ const router= createBrowserRouter([
 
   prepareRouter('/ad-campaign',<ListAds/>),
   prepareRouter('/collection',<ListCollection/>),
+
+  prepareRouter('/list-partner',<ListPartner/>),
+  prepareRouter('/partner-profile',<PartnerProfile/>),
   { path:"/login", element:<LayoutAdmin main={<AdminLogin/>} auth={true}/>},
   { path:"*",element:<LayoutAdmin main={<NotFound/>} auth={true}/>}
 ])

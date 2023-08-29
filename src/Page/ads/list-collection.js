@@ -15,12 +15,14 @@ import { create } from '../../Service/collection.service';
 import { get } from '../../Service/collection.service';
 
 function ListCollection(props){
-    const {state,dispatch}=useContext(UserContext)
-    const {collection,setCollection} = useState([]);
+    const {state,dispatch}=useContext(UserContext);
+    const [collections,setCollections] = useState([]);
+
+    const [Description,setDescription]=useState();
+    const [EditClt,setEditClt]=useState();
 
     const schema = yup.object({
         Name:yup.string().required().min(4,'Tối thiểu 4 ký tự').max(100,'Quá số lượng'),
-        Description:yup.string().nullable(),
     }).required('Vui lòng điền thông tin');
 
     const {register,setValue,handleSubmit,formState:{errors}}=useForm({
@@ -30,15 +32,16 @@ function ListCollection(props){
     const submit = async (data) => {
         // data.preventDefault();
         dispatch({type: "SHOW_LOADING"});
+        data['Description']=Description;
         const rs = await create(data);
-        collection.push(rs)
+        collections.push(rs)
         dispatch({type: "HIDE_LOADING"});
     }
 
     const list = async () => {
         dispatch({type: "SHOW_LOADING"});
-        const collection = await get();
-        setCollection(collection)
+        const getCollection = await get();
+        setCollections(getCollection)
         dispatch({type: "HIDE_LOADING"});
     }
     useEffect(()=>{
@@ -74,16 +77,13 @@ function ListCollection(props){
                                 <div className='mb-3'>
                                     <CKEditor
                                             editor={ ClassicEditor }
-                                            // {...register("Description")} 
-                                            data="<p>Hello from CKEditor&nbsp;5!</p>"
+                                            data={(EditClt&&EditClt.description)??""}
                                             onReady={ editor => {
-                                                // You can store the "editor" and use when it is needed.
-                                                //console.log( 'Editor is ready to use!', editor );
+                                                console.log( 'Editor is ready to use!', editor );
                                             } }
                                             onChange={ ( event, editor ) => {
                                                 const data = editor.getData();
-                                                console.log(data)
-                                                console.log( { event, editor, data } );
+                                                setDescription(data)
                                             } }
                                     />
                                 </div>
@@ -121,10 +121,9 @@ function ListCollection(props){
                                                 <th>Description</th>
                                             </tr>
                                             </thead>
-                                            
                                             <tbody>
                                             {
-                                                collection.map((e,i)=>{
+                                                collections.map((e,i)=>{
                                                     return(
                                                         <tr key={i}>
                                                             <td>{e.name}</td>

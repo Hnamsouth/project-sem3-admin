@@ -21,7 +21,7 @@ const ListWithUpload = ({setFile}) => {
       const formData = new FormData()
       files.forEach((file) => {
          formData.append(file.id, new Blob([file], { type: file.type }), file.name || 'file')
-      })
+      }) 
 
      console.log(files);
    }

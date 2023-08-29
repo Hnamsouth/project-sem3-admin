@@ -18,6 +18,9 @@ const reducer=(state,action)=>{// custom action: {type:...,payload:...}
         case "EDIT_PRODUCT":return {
             ...state,EditProduct:action.payload
         }
+        case "EDIT_PARTNER_INFO":return{
+            ...state,PnProfile:action.payload
+        }
 
         default: return state;
     }

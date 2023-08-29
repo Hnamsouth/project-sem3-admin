@@ -148,6 +148,18 @@ const Sidebar = () => {
                                     <span className="sidebar-normal"> List Collection </span>
                                 </Link>
                             </li>
+                            <li className="nav-item ">
+                                <Link className="nav-link" to={'/list-partner'}>
+                                    <span className="sidebar-mini"> P </span>
+                                    <span className="sidebar-normal"> Partner </span>
+                                </Link>
+                            </li>
+                            <li className="nav-item ">
+                                <Link className="nav-link" to={'/partner-profile'}>
+                                    <span className="sidebar-mini"> PP </span>
+                                    <span className="sidebar-normal"> Partner Profile </span>
+                                </Link>
+                            </li>
 
                         </ul>
                     </div>

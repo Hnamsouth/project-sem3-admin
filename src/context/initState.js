@@ -7,7 +7,8 @@ const STATE={
     afterScript:[],
     userStyle:null,
     products:[],
-    EditProduct:null
+    EditProduct:null,
+    PnProfile:null
 }
 
 export default STATE;
